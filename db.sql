@@ -1,7 +1,7 @@
 drop database if exists mall; -- 数据库名不能用中划线-
 create database mall;
 use mall;
-CREATE TABLE `admin` (
+CREATE TABLE users (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `loginName` varchar(255) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `admin` (
   `Role` enum('客户','商家','管理员') DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
-insert into Admin(loginName,password,remark,Role) values ('admin','admin','测试数据:管理员用户','管理员');
+insert into users(loginName,password,remark,Role) values ('admin','admin','测试数据:管理员用户','管理员');
 
 
 # 分类表

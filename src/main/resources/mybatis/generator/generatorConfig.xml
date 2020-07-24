@@ -11,7 +11,7 @@
         </commentGenerator>
         <!--覆盖生成XML文件-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/springboot_demo?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/mall?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root"
                         password="778645">
         </jdbcConnection>
@@ -35,9 +35,9 @@
         </javaClientGenerator>
 
 
-        <table tableName="Admin" domainObjectName="Admin"/>
+        <table tableName="Users" domainObjectName="User"/>
         <!--<table tableName="Book" domainObjectName="Book"/>-->
-
+        <table tableName="Products" domainObjectName="Product"/>
         <!--  <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
               <property name="useActualColumnNames" value="true"/>
               <generatedKey column="ID" sqlStatement="DB2" identity="true" />
