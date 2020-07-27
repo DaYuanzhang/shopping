@@ -13,6 +13,10 @@ public class User {
 
     private String role;
 
+    private String tel;
+
+    private String emai;
+
     public Integer getId() {
         return id;
     }
@@ -59,5 +63,21 @@ public class User {
 
     public void setRole(String role) {
         this.role = role == null ? null : role.trim();
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
+    }
+
+    public String getEmai() {
+        return emai;
+    }
+
+    public void setEmai(String emai) {
+        this.emai = emai == null ? null : emai.trim();
     }
 }

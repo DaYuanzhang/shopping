@@ -8,6 +8,7 @@ CREATE TABLE users (
   `remark` varchar(255) DEFAULT NULL,
   `is_deleted` int(11) DEFAULT '0',
   `Role` enum('客户','商家','管理员') DEFAULT NULL,
+  emai    varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 insert into users(loginName,password,remark,Role) values ('admin','admin','测试数据:管理员用户','管理员');
@@ -26,8 +27,9 @@ price INT,
 flag VARCHAR(2),
 category_id VARCHAR(32),
 s_id  int(11),
+inventory int DEFAULT '0',
 CONSTRAINT products_fk FOREIGN KEY (category_id) REFERENCES category (cid),
-CONSTRAINT ps_fk FOREIGN KEY (s_id) REFERENCES admin(id)
+CONSTRAINT ps_fk FOREIGN KEY (s_id) REFERENCES users(id)
 );
 
 

@@ -8,6 +8,8 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
     <result column="Role" jdbcType="CHAR" property="role" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="emai" jdbcType="VARCHAR" property="emai" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, loginName, password, remark, is_deleted, Role
+    id, loginName, password, remark, is_deleted, Role, tel, emai
   </sql>
   <select id="selectByExample" parameterType="uestc.team03.mall.common.domain.UserExample" resultMap="BaseResultMap">
     select
@@ -102,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="uestc.team03.mall.common.domain.User">
     insert into users (id, loginName, password, 
-      remark, is_deleted, Role
-      )
+      remark, is_deleted, Role, 
+      tel, emai)
     values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, #{role,jdbcType=CHAR}
-      )
+      #{remark,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, #{role,jdbcType=CHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{emai,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="uestc.team03.mall.common.domain.User">
     insert into users
@@ -129,6 +131,12 @@
       <if test="role != null">
         Role,
       </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="emai != null">
+        emai,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -148,6 +156,12 @@
       </if>
       <if test="role != null">
         #{role,jdbcType=CHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="emai != null">
+        #{emai,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -178,6 +192,12 @@
       <if test="record.role != null">
         Role = #{record.role,jdbcType=CHAR},
       </if>
+      <if test="record.tel != null">
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emai != null">
+        emai = #{record.emai,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +210,9 @@
       password = #{record.password,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
       is_deleted = #{record.isDeleted,jdbcType=INTEGER},
-      Role = #{record.role,jdbcType=CHAR}
+      Role = #{record.role,jdbcType=CHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      emai = #{record.emai,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +235,12 @@
       <if test="role != null">
         Role = #{role,jdbcType=CHAR},
       </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="emai != null">
+        emai = #{emai,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -222,7 +250,9 @@
       password = #{password,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       is_deleted = #{isDeleted,jdbcType=INTEGER},
-      Role = #{role,jdbcType=CHAR}
+      Role = #{role,jdbcType=CHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      emai = #{emai,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

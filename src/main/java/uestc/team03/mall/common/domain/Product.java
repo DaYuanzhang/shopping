@@ -13,6 +13,8 @@ public class Product {
 
     private Integer sId;
 
+    private Integer inventory;
+
     public String getPid() {
         return pid;
     }
@@ -59,5 +61,13 @@ public class Product {
 
     public void setsId(Integer sId) {
         this.sId = sId;
+    }
+
+    public Integer getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Integer inventory) {
+        this.inventory = inventory;
     }
 }
