@@ -9,7 +9,7 @@
     <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
     <result column="Role" jdbcType="CHAR" property="role" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
-    <result column="emai" jdbcType="VARCHAR" property="emai" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, loginName, password, remark, is_deleted, Role, tel, emai
+    id, loginName, password, remark, is_deleted, Role, tel, email
   </sql>
   <select id="selectByExample" parameterType="uestc.team03.mall.common.domain.UserExample" resultMap="BaseResultMap">
     select
@@ -105,10 +105,10 @@
   <insert id="insert" parameterType="uestc.team03.mall.common.domain.User">
     insert into users (id, loginName, password, 
       remark, is_deleted, Role, 
-      tel, emai)
+      tel, email)
     values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, #{role,jdbcType=CHAR}, 
-      #{tel,jdbcType=VARCHAR}, #{emai,jdbcType=VARCHAR})
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="uestc.team03.mall.common.domain.User">
     insert into users
@@ -134,8 +134,8 @@
       <if test="tel != null">
         tel,
       </if>
-      <if test="emai != null">
-        emai,
+      <if test="email != null">
+        email,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -160,8 +160,8 @@
       <if test="tel != null">
         #{tel,jdbcType=VARCHAR},
       </if>
-      <if test="emai != null">
-        #{emai,jdbcType=VARCHAR},
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -195,8 +195,8 @@
       <if test="record.tel != null">
         tel = #{record.tel,jdbcType=VARCHAR},
       </if>
-      <if test="record.emai != null">
-        emai = #{record.emai,jdbcType=VARCHAR},
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -212,7 +212,7 @@
       is_deleted = #{record.isDeleted,jdbcType=INTEGER},
       Role = #{record.role,jdbcType=CHAR},
       tel = #{record.tel,jdbcType=VARCHAR},
-      emai = #{record.emai,jdbcType=VARCHAR}
+      email = #{record.email,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -238,8 +238,8 @@
       <if test="tel != null">
         tel = #{tel,jdbcType=VARCHAR},
       </if>
-      <if test="emai != null">
-        emai = #{emai,jdbcType=VARCHAR},
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -252,7 +252,7 @@
       is_deleted = #{isDeleted,jdbcType=INTEGER},
       Role = #{role,jdbcType=CHAR},
       tel = #{tel,jdbcType=VARCHAR},
-      emai = #{emai,jdbcType=VARCHAR}
+      email = #{email,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -15,7 +15,7 @@ public class User {
 
     private String tel;
 
-    private String emai;
+    private String email;
 
     public Integer getId() {
         return id;
@@ -73,11 +73,11 @@ public class User {
         this.tel = tel == null ? null : tel.trim();
     }
 
-    public String getEmai() {
-        return emai;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmai(String emai) {
-        this.emai = emai == null ? null : emai.trim();
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 }
