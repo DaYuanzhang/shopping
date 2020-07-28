@@ -13,4 +13,6 @@ public interface UserService {
     int updateConsumer(User user);
 
     int addConsumer(User user);
+
+    public PageInfo<User> findMerchant(int pageNo, int pageSize, User user);
 }

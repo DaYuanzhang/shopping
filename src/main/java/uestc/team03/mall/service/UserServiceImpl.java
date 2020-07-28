@@ -71,4 +71,24 @@ public class UserServiceImpl implements UserService {
         }
         return userMapper.insert(user);
     }
+
+    @Override
+    public PageInfo<User> findMerchant(int pageNo, int pageSize, User user) {
+        PageHelper.startPage(pageNo,pageSize);
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        if(user != null){
+            if(user.getLoginname() != null && user.getLoginname().trim().length()>0){
+                criteria.andLoginnameLike("%"+user.getLoginname()+"%");
+            }
+            if(user.getRemark() != null && user.getRemark().trim().length()>0){
+                //System.out.println(user.getRemark());
+                criteria.andRemarkLike("%"+user.getRemark()+"%");
+            }
+        }
+        criteria.andRoleEqualTo("商家");
+        List<User> useList = userMapper.selectByExample(userExample);
+        PageInfo<User> pageInfo = new PageInfo<>(useList);
+        return pageInfo;
+    }
 }
