@@ -15,6 +15,22 @@ public class CommonController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/")
+    public String homePage(){
+        return "login";
+    }
+
+    @RequestMapping(value = "/login.html")
+    public String backhomePage(){
+        return "login";
+    }
+
+    @RequestMapping(value = "/reg.html",method = RequestMethod.GET)
+    public String index() {
+        //后缀为.html的文件名
+        return "reg";
+    }
+
     @RequestMapping("/page/{path}")
     public String toPage1(@PathVariable("path") String p){
         return "/view/"+p;
