@@ -32,4 +32,16 @@ public class LoginController {
             }
         }
     }
+    @RequestMapping("/regrequest")
+    @ResponseBody
+    public Object reg(@RequestBody User user){
+        user.setRole("客户");
+        int count = userService.addConsumer(user);
+        //System.out.println(count);
+        if(count==0){
+            return Result.fail("注册失败，该用户已存在！",200);
+        }
+        return Result.success(count,"注册成功",200);
+    }
+
 }
