@@ -13,3 +13,5 @@
 2、为了实现跳转功能，对controller中的CommonController.java进行了一些修改
 
 3、在static\layuiadmin\layui\css中的layui.css文件添加了✉的css特殊符号
+
+4、数据库用户表新增phone和email属性
