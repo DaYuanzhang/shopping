@@ -4,8 +4,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import uestc.team03.mall.common.domain.User;
 import uestc.team03.mall.common.domain.UserExample;
+import uestc.team03.mall.mapper.extend.UserMapperExtend;
 
-public interface UserMapper {
+public interface UserMapper extends UserMapperExtend {
     long countByExample(UserExample example);
 
     int deleteByExample(UserExample example);

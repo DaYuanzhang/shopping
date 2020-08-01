@@ -4,7 +4,7 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="utf-8">
-    <title>更改班级信息</title>
+    <title>更改个人信息</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -18,17 +18,16 @@
         <div class="layui-card-body" style="padding: 15px;">
             <form class="layui-form" action="" lay-filter="form1">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">客户用户名</label>
+                    <label class="layui-form-label">角色</label>
                     <div class="layui-input-block">
-                        <input type="hidden" name="id" th:value="${user.id}">
-                        <input type="text" name="loginname" lay-verify="name" autocomplete="off" placeholder="请输入标题" class="layui-input" th:value="${user.loginname}">
+                        <input type="text" name="loginname" lay-verify="name" readonly class="layui-input" th:value="${user.role}">
                     </div>
                 </div>
-
                 <div class="layui-form-item">
-                    <label class="layui-form-label">密码</label>
+                    <label class="layui-form-label">用户名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="password" lay-verify="password" autocomplete="off" placeholder="请输入密码" class="layui-input" th:value="${user.password}">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <input type="text" name="loginname" lay-verify="name" readonly class="layui-input" th:value="${user.loginname}">
                     </div>
                 </div>
 
@@ -56,7 +55,7 @@
                 <div class="layui-form-item layui-layout-admin">
                     <div class="layui-input-block">
                         <div class="layui-footer" style="left: 0;">
-                            <button class="layui-btn" lay-submit="" lay-filter="layer_btn_submit">立即提交</button>
+                            <button class="layui-btn" lay-submit="" lay-filter="layer_btn_submit">提交</button>
                             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                         </div>
                     </div>
@@ -92,26 +91,21 @@
                     return '用户名至少得5个字符啊';
                 }
             },
-            password: function(value){
-                if(value.length <=0){
-                    return '密码不能空';
-                }
-            },
             /*email: function(value){
                 if(value.length <=0){
                     return '邮箱不能空';
                 }
             },*/
-            tel: function(value){
+            /*tel: function(value){
                 if(value.length <=0){
                     return '手机号不能空';
                 }
-            },
-            remark:function (value) {
+            },*/
+            /*remark:function (value) {
                 if(value.length <= 0){
                     return '备注不能为空';
                 }
-            }
+            }*/
         });
 
         /* 监听提交 */

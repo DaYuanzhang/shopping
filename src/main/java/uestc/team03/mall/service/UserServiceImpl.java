@@ -91,4 +91,12 @@ public class UserServiceImpl implements UserService {
         PageInfo<User> pageInfo = new PageInfo<>(useList);
         return pageInfo;
     }
+
+    @Override
+    public User login(User user){
+        UserExample userexample = new UserExample();
+        userexample.createCriteria().andLoginnameEqualTo(user.getLoginname());
+        List<User> userList = userMapper.selectByExample(userexample);
+        return userList.size()>0?userList.get(0):null;
+    }
 }

@@ -46,12 +46,6 @@ public class ConsumerController {
         return "/view/showConsumerUpdate";
     }
 
-    @RequestMapping("/submitUpdateConsumer")
-    @ResponseBody
-    public Object submitUpdateConsumer(@RequestBody User user){
-        int count = userService.updateConsumer(user);
-        return Result.success(count,"操作成功",200);
-    }
 
     @RequestMapping("/addConsumer")
     @ResponseBody
