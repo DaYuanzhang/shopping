@@ -10,7 +10,7 @@ CREATE TABLE users (
   tel varchar(20) DEFAULT NULL,
   `Role` enum('客户','商家','管理员') DEFAULT NULL,
   `email`    varchar(30) DEFAULT NULL,
-  `phone`    varchar(11) DEFAULT NULL,
+   tel    varchar(11) DEFAULT NULL,
 
   PRIMARY KEY (`id`)
 );
