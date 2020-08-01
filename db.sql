@@ -10,8 +10,6 @@ CREATE TABLE users (
   tel varchar(20) DEFAULT NULL,
   `Role` enum('客户','商家','管理员') DEFAULT NULL,
   `email`    varchar(30) DEFAULT NULL,
-   tel    varchar(11) DEFAULT NULL,
-
   PRIMARY KEY (`id`)
 );
 insert into users(loginName,password,remark,Role,email,phone) values ('admin','admin','测试数据:管理员用户','管理员','1236523652@qq.com','15326323589');
@@ -37,7 +35,7 @@ CONSTRAINT ps_fk FOREIGN KEY (s_id) REFERENCES users(id)
 #订单表
 CREATE TABLE orders(
 oid	INT(11)	AUTO_INCREMENT,
-user_id	INT(11)`products` ,
+user_id	INT(11) ,
 pro_id	VARCHAR(32),
 dat 	DATE ,
 mer_id INT(11),

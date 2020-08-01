@@ -42,7 +42,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">手机号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="tel" lay-verify="tel" autocomplete="off" placeholder="请输入手机号" class="layui-input" th:value="${user.tel}">
+                        <input type="text" name="tel" lay-verify="phone" autocomplete="off" placeholder="请输入手机号" class="layui-input" th:value="${user.tel}">
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
 
         /* 监听提交 */
         form.on('submit(layer_btn_submit)', function(data){
-            $.ajax({
+                $.ajax({
                 type: "POST",
                 contentType:"application/json",
                 url: "/submitUpdateConsumer",

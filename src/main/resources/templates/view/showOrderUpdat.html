@@ -19,6 +19,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">商家用户名</label>
                     <div class="layui-input-block">
+                        <input type="hidden" name="oid" th:value="${order.oid}">
+                        <input type="hidden" name="merId" th:value="${order.merId}">
                         <input type="text" name="mname" lay-verify="mname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.merchant.loginname}" >
                     </div>
                 </div>
@@ -26,6 +28,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">客户用户名</label>
                     <div class="layui-input-block">
+                        <input type="hidden" name="conId" th:value="${order.conId}">
                         <input type="text" name="cname" lay-verify="cname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.loginname}" >
                     </div>
                 </div>
@@ -33,6 +36,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">商品名称</label>
                     <div class="layui-input-block">
+                        <input type="hidden" name="proId" th:value="${order.proId}">
                         <input type="text" name="pname" lay-verify="pname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.product.pname}" >
                     </div>
                 </div>
@@ -114,10 +118,15 @@
 
         /* 监听提交 */
         form.on('submit(layer_btn_submit)', function(data){
+            var cname = data.cname;
+            var pname = data.pname;
+            var mname = data.mname;
+            var price = data.price;
+            var tel = data.tel;
             $.ajax({
                 type: "POST",
                 contentType:"application/json",
-                url: "/submitUpdateConsumer",
+                url: "/submitUpdateOrder?cname="+cname+"?pname="+pname+"?mname="+mname+"?price="+price+"?tel="+tel,
                 data: JSON.stringify(data.field),
                 success: function(msg){
                     if(msg["success"]){

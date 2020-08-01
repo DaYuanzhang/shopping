@@ -54,13 +54,19 @@ public class OrderController {
     @RequestMapping("/updOrder")
     public String updOrder(ModelMap modelMap,Integer id){
         Order order = orderService.findOrderById(id);
+        order.setConsumer(userService.findUserById(order.getConId()));
+        order.setMerchant(userService.findUserById(order.getMerId()));
+        order.setProduct(productService.findProductById(order.getProId()));
         modelMap.put("order",order);
         return "/view/showOrderUpdat";
     }
 
     @RequestMapping("/submitUpdateOrder")
     @ResponseBody
-    public Object submitUpdateOrder(@RequestBody Order order){
+    public Object submitUpdateOrder(@RequestBody Order order,String cname,String mname,String tel,Integer price,String pname){
+        System.out.println(cname);
+        System.out.println(mname);
+        System.out.println(pname);
         int count = orderService.updateOrder(order);
         return Result.success(count,"操作成功",200);
     }
