@@ -1,10 +1,8 @@
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="utf-8">
-    <title>更改客户信息</title>
+    <title>更改订单信息</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -18,38 +16,48 @@
         <div class="layui-card-body" style="padding: 15px;">
             <form class="layui-form" action="" lay-filter="form1">
                 <div class="layui-form-item">
+                    <label class="layui-form-label">商家id</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="mid" lay-verify="mid" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.merchant.id}" disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商家用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="mname" lay-verify="mname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.merchant.loginname}" disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">客户id</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="cid" lay-verify="cid" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.id}" disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">客户用户名</label>
                     <div class="layui-input-block">
-                        <input type="hidden" name="id" th:value="${user.id}">
-                        <input type="text" name="loginname" lay-verify="name" autocomplete="off" placeholder="请输入标题" class="layui-input" th:value="${user.loginname}">
+                        <input type="text" name="cname" lay-verify="cname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.loginname}" disabled>
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">密码</label>
+                    <label class="layui-form-label">商品名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="password" lay-verify="password" autocomplete="off" placeholder="请输入密码" class="layui-input" th:value="${user.password}">
+                        <input type="text" name="pname" lay-verify="pname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.product.pname}" >
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">邮箱</label>
+                    <label class="layui-form-label">价格</label>
                     <div class="layui-input-block">
-                        <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="请输入邮箱" class="layui-input" th:value="${user.email}">
+                        <input type="text" name="price" lay-verify="price" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.product.price}" disabled>
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">手机号</label>
+                    <label class="layui-form-label">客户手机号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="tel" lay-verify="tel" autocomplete="off" placeholder="请输入手机号" class="layui-input" th:value="${user.tel}">
-                    </div>
-                </div>
-
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">备注</label>
-                    <div class="layui-input-block">
-                        <textarea name="remark"  lay-verify="remark" placeholder="请输入内容" class="layui-textarea" >[[ ${user.remark} ]]</textarea>
+                        <input type="text" name="tel" lay-verify="tel" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.tel}" disabled>
                     </div>
                 </div>
 

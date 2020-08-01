@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uestc.team03.mall.mapper.OrderMapper">
+    <resultMap id="OrderResultMap" type="uestc.team03.mall.common.domain.Order">
+        <id column="oid" jdbcType="INTEGER" property="oid" />
+        <result column="con_id" jdbcType="INTEGER" property="conId" />
+        <result column="pro_id" jdbcType="VARCHAR" property="proId" />
+        <result column="dat" jdbcType="DATE" property="dat" />
+        <result column="mer_id" jdbcType="INTEGER" property="merId" />
+        <association property="consumer" javaType="uestc.team03.mall.common.domain.User">
+            <id column="cid" jdbcType="INTEGER" property="id" />
+            <result column="cloginname" jdbcType="VARCHAR" property="loginname" />
+            <result column="password" jdbcType="VARCHAR" property="password" />
+            <result column="remark" jdbcType="VARCHAR" property="remark" />
+            <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+            <result column="Role" jdbcType="CHAR" property="role" />
+            <result column="tel" jdbcType="VARCHAR" property="tel" />
+            <result column="email" jdbcType="VARCHAR" property="email" />
+        </association>
+        <association property="merchant" javaType="uestc.team03.mall.common.domain.User">
+            <id column="mid" jdbcType="INTEGER" property="id" />
+            <result column="mloginName" jdbcType="VARCHAR" property="loginname" />
+            <result column="password" jdbcType="VARCHAR" property="password" />
+            <result column="remark" jdbcType="VARCHAR" property="remark" />
+            <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+            <result column="Role" jdbcType="CHAR" property="role" />
+            <result column="tel" jdbcType="VARCHAR" property="tel" />
+            <result column="email" jdbcType="VARCHAR" property="email" />
+        </association>
+        <association property="product" javaType="uestc.team03.mall.common.domain.Product">
+            <id column="pid" jdbcType="VARCHAR" property="pid" />
+            <result column="pname" jdbcType="VARCHAR" property="pname"/>
+            <result column="price" jdbcType="VARCHAR" property="price"/>
+        </association>
+    </resultMap>
+
+
+<select id="orderList" resultMap="OrderResultMap">
+  SELECT <include refid="Base_Column_List"/>,con.id as cid,con.loginName as cloginname,mer.id as mid,mer.loginname as mloginName,p.pname as pname,p.price as price
+  FROM users con,users mer,products p,orders o
+  WHERE con.id = o.con_id AND mer.id=o.mer_id AND p.pid = o.pro_id
+</select>
+
+</mapper>

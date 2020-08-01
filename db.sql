@@ -7,6 +7,7 @@ CREATE TABLE users (
   `password` varchar(64) DEFAULT NULL,
   `remark` varchar(255) DEFAULT NULL,
   `is_deleted` int(11) DEFAULT '0',
+  tel varchar(20) DEFAULT NULL,
   `Role` enum('客户','商家','管理员') DEFAULT NULL,
   `email`    varchar(30) DEFAULT NULL,
   `phone`    varchar(11) DEFAULT NULL,
@@ -33,6 +34,18 @@ inventory int DEFAULT '0',
 CONSTRAINT products_fk FOREIGN KEY (category_id) REFERENCES category (cid),
 CONSTRAINT ps_fk FOREIGN KEY (s_id) REFERENCES users(id)
 );
+#订单表
+CREATE TABLE orders(
+oid	INT(11)	AUTO_INCREMENT,
+user_id	INT(11)`products` ,
+pro_id	VARCHAR(32),
+dat 	DATE ,
+mer_id INT(11),
+PRIMARY KEY(oid),
+CONSTRAINT ou_fk FOREIGN KEY(user_id) REFERENCES users(id),
+CONSTRAINT op_fk FOREIGN KEY(pro_id) REFERENCES products(pid)
+CONSTRAINT om_fk FOREIGN KEY(mer_id) REFERENCES users(id)
+)
 
 
 INSERT INTO category(cid,cname) VALUES('c001','家电');
