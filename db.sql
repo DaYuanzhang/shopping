@@ -5,14 +5,15 @@ CREATE TABLE users (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `loginName` varchar(255) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,
-   `email`    varchar(30) DEFAULT NULL,
-   `tel`    varchar(15) DEFAULT NULL,
   `remark` varchar(255) DEFAULT NULL,
   `is_deleted` int(11) DEFAULT '0',
   `Role` enum('客户','商家','管理员') DEFAULT NULL,
+  `email`    varchar(30) DEFAULT NULL,
+  `phone`    varchar(11) DEFAULT NULL,
+
   PRIMARY KEY (`id`)
 );
-insert into users(loginName,password,remark,Role) values ('admin','admin','测试数据:管理员用户','管理员');
+insert into users(loginName,password,remark,Role,email,phone) values ('admin','admin','测试数据:管理员用户','管理员','1236523652@qq.com','15326323589');
 
 
 # 分类表
