@@ -21,12 +21,8 @@
         </div>
         <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
             <div class="layui-form-item">
-                <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
-                <input type="text" name="cellphone" id="LAY-user-login-cellphone" lay-verify="phone" placeholder="手机" class="layui-input">
-            </div>
-            <div class="layui-form-item">
-                <label class="layadmin-user-login-icon layui-icon layui-icon-email" for="LAY-user-login-email"></label>
-                <input type="text" name="email" id="LAY-user-login-email" lay-verify="email" placeholder="邮箱" class="layui-input">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+                <input type="text" name="loginname" id="LAY-user-login-loginname" lay-verify="pass" placeholder="账号" class="layui-input">
             </div>
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
@@ -37,9 +33,17 @@
                 <input type="password" name="repass" id="LAY-user-login-repass" lay-verify="required" placeholder="确认密码" class="layui-input">
             </div>
             <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
+                <input type="text" name="cellphone" id="LAY-user-login-cellphone" lay-verify="phone" placeholder="手机" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-email" for="LAY-user-login-email"></label>
+                <input type="text" name="email" id="LAY-user-login-email" lay-verify="email" placeholder="邮箱" class="layui-input">
+            </div>
+            <!--<div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-nickname"></label>
                 <input type="text" name="nickname" id="LAY-user-login-nickname" lay-verify="nickname" placeholder="昵称" class="layui-input">
-            </div>
+            </div>-->
             <div class="layui-form-item">
                 <input type="checkbox" name="agreement" lay-skin="primary" title="同意用户协议" checked>
             </div>
@@ -85,8 +89,8 @@
             }
 
             //请求接口
-            admin.req({
-                url: layui.setter.base + 'json/user/reg.js' //实际使用请改成服务端真实接口
+            /*admin.req({
+                url: "/regrequest" //实际使用请改成服务端真实接口
                 ,data: field
                 ,done: function(res){
                     layer.msg('注册成功', {
@@ -94,9 +98,24 @@
                         ,icon: 1
                         ,time: 1000
                     }, function(){
-                        location.hash = '/user/login'; //跳转到登入页
+                        window.location = "/"; //跳转到登入页
                     });
                 }
+            });*/
+            $.ajax({
+                type: "POST",
+                contentType:"application/json",
+                url: "/regrequest",
+                data: JSON.stringify(obj.field),
+                success: function(msg){
+                    if(msg["success"]){
+                        layer.alert("注册成功");
+                        window.location="/";
+                    }else{
+                        layer.msg(msg["message"],{time:1500});
+                    }
+                },
+                dataType:"json"
             });
 
             return false;

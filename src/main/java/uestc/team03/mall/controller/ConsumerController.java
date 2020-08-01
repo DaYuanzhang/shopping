@@ -47,7 +47,7 @@ public class ConsumerController {
     }
 
 
-    @RequestMapping("/addConsumer")
+    /*@RequestMapping("/addConsumer")
     @ResponseBody
     public Object addConsumer(@RequestBody User user){
         user.setRole("客户");
@@ -57,5 +57,5 @@ public class ConsumerController {
             return Result.fail("操作失败，该用户已存在！",200);
         }
         return Result.success(count,"操作成功",200);
-    }
+    }*/
 }
