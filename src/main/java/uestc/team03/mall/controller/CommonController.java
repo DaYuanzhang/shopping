@@ -19,7 +19,7 @@ public class CommonController {
         return "/view/login";
     }
 
-    @RequestMapping("/{path}")
+    @RequestMapping("/page/{path}")
     public String toPage1(@PathVariable("path") String p,ModelMap modelMap, HttpSession session){
         User user1= (User)session.getAttribute("user");
         modelMap.put("user",user1);

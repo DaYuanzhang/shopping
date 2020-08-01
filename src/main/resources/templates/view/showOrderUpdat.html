@@ -15,28 +15,18 @@
     <div class="layui-card">
         <div class="layui-card-body" style="padding: 15px;">
             <form class="layui-form" action="" lay-filter="form1">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">商家id</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="mid" lay-verify="mid" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.merchant.id}" disabled>
-                    </div>
-                </div>
+
                 <div class="layui-form-item">
                     <label class="layui-form-label">商家用户名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="mname" lay-verify="mname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.merchant.loginname}" disabled>
+                        <input type="text" name="mname" lay-verify="mname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.merchant.loginname}" >
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">客户id</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="cid" lay-verify="cid" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.id}" disabled>
-                    </div>
-                </div>
+
                 <div class="layui-form-item">
                     <label class="layui-form-label">客户用户名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="cname" lay-verify="cname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.loginname}" disabled>
+                        <input type="text" name="cname" lay-verify="cname" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.loginname}" >
                     </div>
                 </div>
 
@@ -50,14 +40,14 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">价格</label>
                     <div class="layui-input-block">
-                        <input type="text" name="price" lay-verify="price" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.product.price}" disabled>
+                        <input type="text" name="price" lay-verify="price" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.product.price}" >
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">客户手机号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="tel" lay-verify="tel" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.tel}" disabled>
+                        <input type="text" name="tel" lay-verify="phone" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.tel}" >
                     </div>
                 </div>
 
@@ -95,14 +85,19 @@
 
         /* 自定义验证规则 */
         form.verify({
-            loginname: function(value){
+            mname: function(value){
                 if(value.length < 5){
                     return '用户名至少得5个字符啊';
                 }
             },
-            password: function(value){
+            cname: function(value){
+                if(value.length < 5){
+                    return '用户名至少得5个字符啊';
+                }
+            },
+            price: function(value){
                 if(value.length <=0){
-                    return '密码不能空';
+                    return '价格不能空';
                 }
             },
             /*email: function(value){
@@ -115,11 +110,6 @@
                     return '手机号不能空';
                 }
             },
-            remark:function (value) {
-                if(value.length <= 0){
-                    return '备注不能为空';
-                }
-            }
         });
 
         /* 监听提交 */
