@@ -40,6 +40,9 @@
 1、db.sql文件执行有错误，第15行的插入语句中的”phone“更改为”tel“
 
 2、login.html中将22行<div>标签改为<form>标签并增加了action="/loginrequest"
+
    将63行form.on方法内原语句注释，于66行新增方法admin.req，完成登录。
 
 3、LoginController中，将31行”登录失败“改为”密码错误“，将25、29、31行中code改为0
+    
+    将22行@RequestBody删除
