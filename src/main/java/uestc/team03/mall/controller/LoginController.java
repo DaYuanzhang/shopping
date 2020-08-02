@@ -26,7 +26,13 @@ public class LoginController {
         }else {
             if(userInDB.getPassword().equals(user.getPassword())){
                 session.setAttribute("user",userInDB);
-                return Result.success("登录成功",0);
+                if(userInDB.getRole().equals("客户")){
+                    return Result.success("客户登录成功",0);
+                }else if(userInDB.getRole().equals("商家")){
+                    return Result.success("商家登录成功",0);
+                }else{
+                    return Result.success("管理员登录成功",0);
+                }
             }else {
                 return  Result.fail("密码错误",0);
             }
