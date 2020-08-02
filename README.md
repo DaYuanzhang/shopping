@@ -40,14 +40,38 @@
 1、db.sql文件执行有错误，第15行的插入语句中的”phone“更改为”tel“
 
 2、login.html中将22行<div>标签改为<form>标签并增加了action="/loginrequest"
+   将63行form.on方法内原语句注释，于66行新增方法admin.req，完成登录。
+
+3、LoginController中，将31行”登录失败“改为”密码错误“，将25、29、31行中code改为0
+
+//**************************************************
+版本“都不知道第几版了”
+
+1、db.sql文件执行有错误，第15行的插入语句中的”phone“更改为”tel“
+
+2、login.html中将22行<div>标签改为<form>标签并增加了action="/loginrequest"
 
    将63行form.on方法内原语句注释，于66行新增方法admin.req，完成登录。
 
 3、LoginController中，将31行”登录失败“改为”密码错误“，将25、29、31行中code改为0
 
-    
-    将22行@RequestBody删除
+  将22行@RequestBody删除
 //**************************************************
 版本“更不知道第几版了”
 
 1.新增根据不同角色用户登录到不同页面的功能，目前3个角色的用户登录后都会进入AdminPage页面，如有需要可在login.html中的77,86,95行更改。
+
+//***************************************************
+版本“别问我这是第几版”
+
+1、修改LoginController.java文件：删除第43行中的@RequestBody；将第48、50行的code：“200”改为“0”。
+
+2、修改reg.html文件：将第22行中的div标签改为form标签，并在form标签中增加了action="/regrequest"；
+
+   修改了24、25行的class、for、id、lay-verify中的内容，纠正了用户名样式；
+    
+   在33行中在lay-verify中增加了confirmPass内容，用于检测两次输入密码是否相等；
+   
+   在77~96行新增form.verify方法，用于用户注册的输入检测，将原$.ajax方法注释掉，新增admin.req方法，并把原来在form.on方法里的“同意用户协议”的if语句增加进admin.req方法，判断“密码输入不一致”的if语句加入form.verify方法；
+   
+   
