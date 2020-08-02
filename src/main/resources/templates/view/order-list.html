@@ -29,6 +29,15 @@
                     </div>
                 </div>
                 <div class="layui-inline">
+
+                <div class="layui-inline">
+                        <label class="layui-form-label">商品名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="pname" placeholder="请输入商品名" autocomplete="off" class="layui-input">
+                        </div>
+                </div>
+
+                    <div class="layui-inline">
                     <button class="layui-btn layuiadmin-btn-comm" data-type="reload" lay-submit lay-filter="LAY-app-contcomm-search">
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                     </button>
@@ -197,7 +206,7 @@
                     $.ajax({
                         type: "POST",
                         contentType:"application/json",
-                        url: "/delConsumer",
+                        url: "/delOrder",
                         data: JSON.stringify(ids),
                         success: function(msg){
                             if(msg["success"]){
@@ -215,9 +224,9 @@
             }
             ,createConsumer:function () {
                 layer.open({
-                    title:"新建客户",
+                    title:"新建订单",
                     type: 2,
-                    content: '/page/showAddConsumer',
+                    content: '/showAddOrder',
                     area: ['600px', '400px'],
                     maxmin: true,
                     success: function(layero, index){

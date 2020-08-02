@@ -116,6 +116,9 @@
 
         /* 监听提交 */
         form.on('submit(layer_btn_submit)', function(data){
+
+            console.info("Hello Runoob!");
+            console.info(data);
                 $.ajax({
                 type: "POST",
                 contentType:"application/json",
@@ -135,7 +138,9 @@
             });
            return false;
         });
+
     });
+
 </script>
 </body>
 </html>

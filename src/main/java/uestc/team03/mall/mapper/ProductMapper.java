@@ -4,8 +4,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import uestc.team03.mall.common.domain.Product;
 import uestc.team03.mall.common.domain.ProductExample;
+import uestc.team03.mall.mapper.extend.ProductMapperExtend;
 
-public interface ProductMapper {
+public interface ProductMapper extends ProductMapperExtend {
     long countByExample(ProductExample example);
 
     int deleteByExample(ProductExample example);

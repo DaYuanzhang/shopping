@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uestc.team03.mall.mapper.ProductMapper">
+    <select id="selectByName" resultMap="BaseResultMap">
+        select
+        *
+        from products
+        where  pname= #{pname}
+    </select>
+
+
+</mapper>

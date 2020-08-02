@@ -4,8 +4,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uestc.team03.mall.common.domain.Product;
+import uestc.team03.mall.common.domain.ProductExample;
 import uestc.team03.mall.common.domain.User;
 import uestc.team03.mall.common.domain.UserExample;
+import uestc.team03.mall.mapper.ProductMapper;
 import uestc.team03.mall.mapper.UserMapper;
 
 import java.util.ArrayList;
@@ -16,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ProductMapper productMapper;
 
     @Override
     public PageInfo<User> findConsumer(int pageNo, int pageSize,User user) {
@@ -99,4 +105,26 @@ public class UserServiceImpl implements UserService {
         List<User> userList = userMapper.selectByExample(userexample);
         return userList.size()>0?userList.get(0):null;
     }
+
+    @Override
+    public User findUserByName(String cname) {
+       User user = userMapper.selectByLoginname(cname);
+       if(user==null) return null;
+       return user;
+    }
+
+    @Override
+    public List<User> consumerList() {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andRoleEqualTo("客户");
+        return  userMapper.selectByExample(userExample);
+    }
+
+    @Override
+    public List<User> merchantList() {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andRoleEqualTo("商家");
+        return  userMapper.selectByExample(userExample);
+    }
+
 }
