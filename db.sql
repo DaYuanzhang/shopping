@@ -12,7 +12,7 @@ CREATE TABLE users (
   `email`    varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
-insert into users(loginName,password,remark,Role,email,phone) values ('admin','admin','测试数据:管理员用户','管理员','1236523652@qq.com','15326323589');
+insert into users(loginName,password,remark,Role,email,tel) values ('admin','admin','测试数据:管理员用户','管理员','1236523652@qq.com','15326323589');
 
 
 # 分类表

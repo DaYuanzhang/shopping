@@ -19,16 +19,16 @@ public class LoginController {
 
     @RequestMapping("/loginrequest")
     @ResponseBody
-    public Object login(@RequestBody User user, HttpSession session){
+    public Object login( User user, HttpSession session){
         User userInDB =userService.login(user);
         if(userInDB==null){
-            return Result.fail("用户名不存在",200);
+            return Result.fail("用户名不存在",0);
         }else {
             if(userInDB.getPassword().equals(user.getPassword())){
                 session.setAttribute("user",userInDB);
-                return Result.success("登录成功",200);
+                return Result.success("登录成功",0);
             }else {
-                return  Result.fail("登录失败",200);
+                return  Result.fail("密码错误",0);
             }
         }
     }
