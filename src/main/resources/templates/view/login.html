@@ -71,10 +71,11 @@
                     //登入的提示与跳转
                     if(res.message === '客户登录成功'){
                         layer.msg(res.message, {
-                            icon: 0
+                            offset: '15px'
+                            ,icon: 1
                             ,time: 1000
                         }, function(){
-                            location.href = '/AdminPage'; //后台主页
+                            location.href = '/page/ConsumerPage'; //后台主页
                         });
                     }
                     else if(res.message === '商家登录成功') {
@@ -83,7 +84,7 @@
                             ,icon: 1
                             ,time: 1000
                         }, function(){
-                            location.href = '/AdminPage'; //后台主页
+                            location.href = '/page/MerchantPage'; //后台主页
                         });
                     }
                     else if(res.message === '管理员登录成功') {
@@ -92,7 +93,15 @@
                             ,icon: 1
                             ,time: 1000
                         }, function(){
-                            location.href = '/AdminPage'; //后台主页
+                            location.href = '/page/AdminPage'; //后台主页
+                        });
+                    }
+                    else{
+                        layer.msg(res.message, {
+                            icon: 0
+                            ,time: 1000
+                        },function(){
+                            location.href = '../'; //后台主页
                         });
                     }
                 },

@@ -26,12 +26,12 @@ public class CommonController {
         return "/view/"+p;
     }
 
-    @RequestMapping("/AdminPage")
-    public String toPage1(ModelMap modelMap, HttpSession session){
-        User user2= (User)session.getAttribute("user");
-        modelMap.put("user",user2);
-        return "/view/AdminPage";
-    }
+//    @RequestMapping("/AdminPage")
+//    public String toPage1(ModelMap modelMap, HttpSession session){
+//        User user2= (User)session.getAttribute("user");
+//        modelMap.put("user",user2);
+//        return "/view/AdminPage";
+//    }
 
 
 }
