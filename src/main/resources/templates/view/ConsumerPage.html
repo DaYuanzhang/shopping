@@ -100,7 +100,7 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="console">
-                                <a lay-href="home/homepage1.html">个人信息</a>
+                                <a lay-href="home/homepage1.html" th:lay-href="@{/info}">个人信息</a>
                             </dd>
                         </dl>
                     </li>
@@ -111,7 +111,7 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd><a lay-href="/page/consumerGoodslist.html">商品列表</a></dd>
-                            <dd><a lay-href="/page/consumerOrder-list.html">我的订单</a></dd>
+                            <dd><a lay-href="/page/consumerOrder-list.html" th:lay-href="@{/consumerOrder-list}">我的订单</a></dd>
                         </dl>
                     </li>
                 </ul>
