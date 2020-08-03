@@ -39,6 +39,7 @@ user_id	INT(11) ,
 pro_id	VARCHAR(32),
 dat 	DATE ,
 mer_id INT(11),
+addr  VARCHAR(50),
 PRIMARY KEY(oid),
 CONSTRAINT ou_fk FOREIGN KEY(user_id) REFERENCES users(id),
 CONSTRAINT op_fk FOREIGN KEY(pro_id) REFERENCES products(pid)
