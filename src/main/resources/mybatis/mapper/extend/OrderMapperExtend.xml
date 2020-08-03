@@ -7,6 +7,7 @@
         <result column="pro_id" jdbcType="VARCHAR" property="proId" />
         <result column="dat" jdbcType="DATE" property="dat" />
         <result column="mer_id" jdbcType="INTEGER" property="merId" />
+        <result column="addr" jdbcType="VARCHAR" property="addr" />
         <association property="consumer" javaType="uestc.team03.mall.common.domain.User">
             <id column="cid" jdbcType="INTEGER" property="id" />
             <result column="cloginname" jdbcType="VARCHAR" property="loginname" />

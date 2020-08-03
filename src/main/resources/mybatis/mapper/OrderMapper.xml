@@ -7,6 +7,7 @@
     <result column="pro_id" jdbcType="VARCHAR" property="proId" />
     <result column="dat" jdbcType="DATE" property="dat" />
     <result column="mer_id" jdbcType="INTEGER" property="merId" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    oid, con_id, pro_id, dat, mer_id
+    oid, con_id, pro_id, dat, mer_id, addr
   </sql>
   <select id="selectByExample" parameterType="uestc.team03.mall.common.domain.OrderExample" resultMap="BaseResultMap">
     select
@@ -101,9 +102,9 @@
   </delete>
   <insert id="insert" parameterType="uestc.team03.mall.common.domain.Order">
     insert into orders (oid, con_id, pro_id, 
-      dat, mer_id)
+      dat, mer_id, addr)
     values (#{oid,jdbcType=INTEGER}, #{conId,jdbcType=INTEGER}, #{proId,jdbcType=VARCHAR}, 
-      #{dat,jdbcType=DATE}, #{merId,jdbcType=INTEGER})
+      #{dat,jdbcType=DATE}, #{merId,jdbcType=INTEGER}, #{addr,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="uestc.team03.mall.common.domain.Order">
     insert into orders
@@ -123,6 +124,9 @@
       <if test="merId != null">
         mer_id,
       </if>
+      <if test="addr != null">
+        addr,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="oid != null">
@@ -139,6 +143,9 @@
       </if>
       <if test="merId != null">
         #{merId,jdbcType=INTEGER},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +173,9 @@
       <if test="record.merId != null">
         mer_id = #{record.merId,jdbcType=INTEGER},
       </if>
+      <if test="record.addr != null">
+        addr = #{record.addr,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +187,8 @@
       con_id = #{record.conId,jdbcType=INTEGER},
       pro_id = #{record.proId,jdbcType=VARCHAR},
       dat = #{record.dat,jdbcType=DATE},
-      mer_id = #{record.merId,jdbcType=INTEGER}
+      mer_id = #{record.merId,jdbcType=INTEGER},
+      addr = #{record.addr,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +208,9 @@
       <if test="merId != null">
         mer_id = #{merId,jdbcType=INTEGER},
       </if>
+      <if test="addr != null">
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
     </set>
     where oid = #{oid,jdbcType=INTEGER}
   </update>
@@ -205,7 +219,8 @@
     set con_id = #{conId,jdbcType=INTEGER},
       pro_id = #{proId,jdbcType=VARCHAR},
       dat = #{dat,jdbcType=DATE},
-      mer_id = #{merId,jdbcType=INTEGER}
+      mer_id = #{merId,jdbcType=INTEGER},
+      addr = #{addr,jdbcType=VARCHAR}
     where oid = #{oid,jdbcType=INTEGER}
   </update>
 </mapper>

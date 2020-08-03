@@ -54,14 +54,21 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">价格</label>
                     <div class="layui-input-block">
-                        <input type="text" name="price" lay-verify="price" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.product.price}" >
+                        <input type="text" name="price" lay-verify="price" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.product.price}" disabled>
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">客户手机号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="tel" lay-verify="phone" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.tel}" >
+                        <input type="text" name="tel" lay-verify="phone" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.consumer.tel}" disabled>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="addr" lay-verify="addr" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.addr}" >
                     </div>
                 </div>
 
@@ -125,6 +132,11 @@
                     return '邮箱不能空';
                 }
             },*/
+            addr: function(value){
+                if(value.length <=0){
+                    return '价格不能空';
+                }
+            },
             tel: function(value){
                 if(value.length <=0){
                     return '手机号不能空';
@@ -139,10 +151,11 @@
             var mname = data.field.mname;
             var price = data.field.price;
             var tel = data.field.tel;
+            var addr = data.field.addr;
             $.ajax({
                 type: "POST",
                 contentType:"application/json",
-                url: "/submitUpdateOrder?cname="+cname+"&pname="+pname+"&mname="+mname+"&price="+price+"&tel="+tel,
+                url: "/submitUpdateOrder?cname="+cname+"&pname="+pname+"&mname="+mname,
                 data: JSON.stringify(data.field),
                 success: function(msg){
                     if(msg["success"]){

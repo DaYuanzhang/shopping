@@ -15,6 +15,8 @@ public class Order extends OrderExtend {
 
     private Integer merId;
 
+    private String addr;
+
     public Integer getOid() {
         return oid;
     }
@@ -53,5 +55,13 @@ public class Order extends OrderExtend {
 
     public void setMerId(Integer merId) {
         this.merId = merId;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr == null ? null : addr.trim();
     }
 }

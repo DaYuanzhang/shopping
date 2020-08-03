@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService{
         if(mloginname!=null && mloginname.trim().length()==0) mloginname=null;
         if(pname!=null && pname.trim().length()==0) pname=null;
 
-        System.out.println("findOrder loginname="+cloginname);
+
         PageHelper.startPage(pageNo,pageSize);
         List<Order> orderList = orderMapper.orderList();
         int count = -1;
@@ -66,7 +66,7 @@ public class OrderServiceImpl implements OrderService{
 
     private List<Order> findOrder(String cloginname, String mloginname, String pname, List<Order> orders) {
         for(int i=0;i<orders.size();i++){
-            if(orders.get(i).getConsumer().getLoginname().contains(cloginname)==false || orders.get(i).getMerchant().getLoginname().contains(mloginname) || orders.get(i).getProduct().getPname().contains(pname)==false){
+            if(orders.get(i).getConsumer().getLoginname().contains(cloginname)==false || orders.get(i).getMerchant().getLoginname().contains(mloginname)==false || orders.get(i).getProduct().getPname().contains(pname)==false){
                 orders.remove(i);
                 i--;
             }

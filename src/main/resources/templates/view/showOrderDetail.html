@@ -18,7 +18,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">成交时间</label>
                     <div class="layui-input-block">
-                        <input type="text" name="date" lay-verify="date" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.dat}" disabled>
+                        <input type="text" name="date" lay-verify="dat" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.dat}" disabled>
                     </div>
                 </div>
              <div class="layui-form-item">
@@ -56,6 +56,13 @@
                     <label class="layui-form-label">价格</label>
                     <div class="layui-input-block">
                         <input type="text" name="price" lay-verify="price" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.product.price}" disabled>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="addr" lay-verify="addr" autocomplete="off" placeholder="空" class="layui-input" th:value="${order.addr}" disabled>
                     </div>
                 </div>
 

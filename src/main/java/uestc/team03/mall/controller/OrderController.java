@@ -89,7 +89,7 @@ public class OrderController {
 
     @RequestMapping("/submitUpdateOrder")
     @ResponseBody
-    public Object submitUpdateOrder(@RequestBody Order order,String cname,String pname,String mname,Integer price,String tel){
+    public Object submitUpdateOrder(@RequestBody Order order,String cname,String pname,String mname){
         User consumer = userService.findUserByName(cname);
         User merchant = userService.findUserByName(mname);
         Product product = productService.findProductByName(pname);
@@ -97,8 +97,6 @@ public class OrderController {
         order.setProId(product.getPid());
         order.setConId(consumer.getId());
         order.setMerId(merchant.getId());
-        consumer.setTel(tel);
-        product.setPrice(price);
         order.setProduct(product);
         order.setMerchant(merchant);
         order.setConsumer(consumer);
@@ -115,6 +113,7 @@ public class OrderController {
 
         Order order1 = new Order();
         order1.setDat(new Date());
+        order1.setAddr(order.getAddr());
         order1.setConsumer(userService.findUserByName(cname));
         order1.setConId(order1.getConsumer().getId());
         order1.setMerchant(userService.findUserByName(mname));
