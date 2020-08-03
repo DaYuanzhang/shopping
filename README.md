@@ -96,6 +96,10 @@
   1、login.html文件对77、86、96行做了修改，增加跳转页面；99行增加了登陆失败的样式；
   
   2、CommonController.java文件将原来的部分controller注释掉了
+  
+//*****************************************************************************************版本0.60
+
+  1、新增欢迎页面，并新增welcomeStyle.css文件到layuiadmin的style文件中，新增welcome文件夹到layuiadmin的json文件中
     
     
   

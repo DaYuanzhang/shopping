@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页</title>
+    <title>
+        欢迎界面
+    </title>
+    <link rel="stylesheet" href="../../static/layuiadmin/style/welcomeStyle.css" th:href="@{/layuiadmin/style/welcomeStyle.css}">
 </head>
 <body>
- <h1> 欢迎使用XXX 系统,一般欢迎页都是显示仪表盘，统计信息等等......</h1>
+<div class="container">
+    <h1 class="effect1">您好，欢迎光临</h1>
+    <p>综合网上购物平台</p>
+</div>
+<section>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</section>
+<script src="../../static/layuiadmin/json/welcome/animer.min.js" th:src="@{/layuiadmin/json/welcome/animer.min.js}"></script>
+<script src="../../static/layuiadmin/json/welcome/script.js" th:src="@{/layuiadmin/json/welcome/script.js}"></script>
 </body>
 </html>
