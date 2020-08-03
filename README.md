@@ -89,6 +89,7 @@
        
   
   1.订单增加了addr地址属性
+  2.增加了商家页面MerchantPage
     
     
   
