@@ -33,16 +33,22 @@ public class InfoController {
         modelMap.put("user",user2);
         return "/view/Merchantinfo";
     }
-    @RequestMapping("/pwdchange")
-    public String PasswordChange(ModelMap modelMap, HttpSession session){
+    @RequestMapping("/Ainfo")
+    public String Admin_info(ModelMap modelMap, HttpSession session){
         User user3= (User)session.getAttribute("user");
         modelMap.put("user",user3);
+        return "/view/Admininfo";
+    }
+    @RequestMapping("/pwdchange")
+    public String PasswordChange(ModelMap modelMap, HttpSession session){
+        User user4= (User)session.getAttribute("user");
+        modelMap.put("user",user4);
         return "/view/pwdchange";
     }
     @RequestMapping("/infochange")
     public String InfoChange(ModelMap modelMap, HttpSession session){
-        User user4= (User)session.getAttribute("user");
-        modelMap.put("user",user4);
+        User user5= (User)session.getAttribute("user");
+        modelMap.put("user",user5);
         return "/view/showConsumerUpdate";
     }
     @RequestMapping("/submitUpdateConsumer")

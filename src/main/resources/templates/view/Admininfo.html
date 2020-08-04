@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <title>我的资料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" th:herf="@{/layuiadmin/layui/css/layui.css/}">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" th:herf="@{/layuiadmin/style/admin.css/}">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">我的资料</div>
+                <div class="layui-card-body" pad15>
+
+                    <div class="layui-form" lay-filter="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">角色：</label>
+                            <div class="layui-form-mid" text="" th:text="${user.role}" ></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户名：</label>
+                            <div class="layui-form-mid" text="" th:text="${user.loginname}" ></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">手机：</label>
+                            <div class="layui-form-mid" text="" th:text="${user.tel}"></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">邮箱：</label>
+                            <div class="layui-form-mid" text="" th:text="${user.email}" ></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">备注：</label>
+                            <div class="layui-form-mid" text="" th:text="${user.remark}" ></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-href="" th:lay-href="@{/infochange}">修改个人信息</button>
+                                <button class="layui-btn" lay-href="" th:lay-href="@{/pwdchange}">修改密码</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../../layuiadmin/layui/layui.js"  th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script>
+    layui.config({
+        base: [('"'+@{/layuiadmin/}+'"')] //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'user']);
+</script>
+</body>
+</html>
