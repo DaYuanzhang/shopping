@@ -7,7 +7,7 @@ CREATE TABLE users (
   `password` varchar(64) DEFAULT NULL,
   `remark` varchar(255) DEFAULT NULL,
   `is_deleted` int(11) DEFAULT '0',
-  tel varchar(20) DEFAULT NULL,
+  `tel` varchar(20) DEFAULT NULL,
   `Role` enum('客户','商家','管理员') DEFAULT NULL,
   `email`    varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -46,6 +46,14 @@ CONSTRAINT op_fk FOREIGN KEY(pro_id) REFERENCES products(pid)
 CONSTRAINT om_fk FOREIGN KEY(mer_id) REFERENCES users(id)
 )
 
+CREATE TABLE request (
+  `req_number` int(11) NOT NULL AUTO_INCREMENT,
+    `id`    int(11)   DEFAULT NULL,
+  `loginName` varchar(255) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`req_number`)
+);
+INSERT INTO request (id, loginName) VALUES('1','admin');
 
 INSERT INTO category(cid,cname) VALUES('c001','家电');
 INSERT INTO category(cid,cname) VALUES('c002','服饰');

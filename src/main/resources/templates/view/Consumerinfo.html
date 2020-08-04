@@ -1,10 +1,8 @@
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
   <meta charset="utf-8">
-  <title>设置我的资料</title>
+  <title>我的资料</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -45,6 +43,7 @@
                 <div class="layui-input-block">
                   <button class="layui-btn" lay-href="" th:lay-href="@{/infochange}">修改个人信息</button>
                   <button class="layui-btn" lay-href="" th:lay-href="@{/pwdchange}">修改密码</button>
+                  <button class="layui-btn" lay-submit lay-filter="LAY-user-Roleup-submit">申请成为商家</button>
                 </div>
               </div>
 
@@ -62,7 +61,44 @@
     base: [('"'+@{/layuiadmin/}+'"')] //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
-  }).use(['index', 'user']);
+  }).use(['index', 'user'], function(){
+    var $ = layui.$
+            ,setter = layui.setter
+            ,admin = layui.admin
+            ,form = layui.form
+            ,router = layui.router()
+            ,search = router.search;
+
+    form.render();
+
+    //提交
+    form.on('submit(LAY-user-Roleup-submit)', function(obj){
+
+      //请求申请接口
+      admin.req({
+        url: '/RoleupRequest' //实际使用请改成服务端真实接口
+        ,data: obj.field
+        ,done: function(res){
+
+          //申请的提示与跳转
+          if(res.message === '申请成功，请等待管理员审核'){
+            layer.msg(res.message, {
+              offset: '25px'
+              ,icon: 1
+              ,time: 1500
+            }, function(){
+              var layer = parent.layer;
+              layer.closeAll();
+                // 重新加载上级页面的路径，相当于刷新
+              parent.location.reload();
+            });
+          }
+        },
+        dataType:"json"
+      });
+      return false;
+    });
+  });
   </script>
 </body>
 </html>
