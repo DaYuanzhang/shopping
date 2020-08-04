@@ -1,7 +1,6 @@
 package uestc.team03.mall.service;
 
 import com.github.pagehelper.PageInfo;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import org.springframework.stereotype.Service;
 import uestc.team03.mall.common.domain.Order;
 
