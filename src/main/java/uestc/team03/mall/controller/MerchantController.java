@@ -12,6 +12,8 @@ import uestc.team03.mall.common.domain.User;
 import uestc.team03.mall.common.utils.Result;
 import uestc.team03.mall.service.UserService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class MerchantController {
     @Autowired
@@ -63,4 +65,7 @@ public class MerchantController {
         }
         return Result.success(count,"操作成功",200);
     }
+
+
+
 }

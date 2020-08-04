@@ -5,11 +5,11 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="loginName" jdbcType="VARCHAR" property="loginname" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="tel" jdbcType="VARCHAR" property="tel" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
     <result column="Role" jdbcType="CHAR" property="role" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, loginName, password, tel, email, remark, is_deleted, Role
+    id, loginName, password, remark, is_deleted, Role, email, tel
   </sql>
   <select id="selectByExample" parameterType="uestc.team03.mall.common.domain.UserExample" resultMap="BaseResultMap">
     select
@@ -104,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="uestc.team03.mall.common.domain.User">
     insert into users (id, loginName, password, 
-      tel, email, remark, 
-      is_deleted, Role)
+      remark, is_deleted, Role, 
+      email, tel)
     values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{isDeleted,jdbcType=INTEGER}, #{role,jdbcType=CHAR})
+      #{remark,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, #{role,jdbcType=CHAR}, 
+      #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="uestc.team03.mall.common.domain.User">
     insert into users
@@ -122,12 +122,6 @@
       <if test="password != null">
         password,
       </if>
-      <if test="tel != null">
-        tel,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
       <if test="remark != null">
         remark,
       </if>
@@ -136,6 +130,12 @@
       </if>
       <if test="role != null">
         Role,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="tel != null">
+        tel,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -148,12 +148,6 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="tel != null">
-        #{tel,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
@@ -162,6 +156,12 @@
       </if>
       <if test="role != null">
         #{role,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -183,12 +183,6 @@
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.tel != null">
-        tel = #{record.tel,jdbcType=VARCHAR},
-      </if>
-      <if test="record.email != null">
-        email = #{record.email,jdbcType=VARCHAR},
-      </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
@@ -197,6 +191,12 @@
       </if>
       <if test="record.role != null">
         Role = #{record.role,jdbcType=CHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null">
+        tel = #{record.tel,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -208,11 +208,11 @@
     set id = #{record.id,jdbcType=INTEGER},
       loginName = #{record.loginname,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      tel = #{record.tel,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
       is_deleted = #{record.isDeleted,jdbcType=INTEGER},
-      Role = #{record.role,jdbcType=CHAR}
+      Role = #{record.role,jdbcType=CHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -226,12 +226,6 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="tel != null">
-        tel = #{tel,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
@@ -241,6 +235,12 @@
       <if test="role != null">
         Role = #{role,jdbcType=CHAR},
       </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -248,11 +248,11 @@
     update users
     set loginName = #{loginname,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       is_deleted = #{isDeleted,jdbcType=INTEGER},
-      Role = #{role,jdbcType=CHAR}
+      Role = #{role,jdbcType=CHAR},
+      email = #{email,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
