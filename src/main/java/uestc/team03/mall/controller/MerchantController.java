@@ -76,7 +76,7 @@ public class MerchantController {
     public String OrderListPage(ModelMap modelMap, HttpSession session){
         User user1= (User)session.getAttribute("user");
         modelMap.put("user",user1);
-        return "/view/consumerOrder-list";
+        return "/view/merchantOrder-list";
     }
 
     @RequestMapping("/merchantlistOrder")
