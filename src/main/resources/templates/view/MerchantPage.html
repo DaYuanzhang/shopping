@@ -87,7 +87,7 @@
         <div class="layui-side layui-side-menu">
             <div class="layui-side-scroll">
                 <div class="layui-logo" lay-href="home/console.html">
-                    <span>客户</span>
+                    <span>商家</span>
                 </div>
 
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
@@ -105,11 +105,11 @@
                     <li data-name="template" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="功能" lay-direction="2">
                             <i class="layui-icon layui-icon-template"></i>
-                            <cite>管理商店</cite>
+                            <cite>管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a lay-href="/page/merchantGoodslist.html">我的商品</a></dd>
-                            <dd><a lay-href="/page/merchantOrder-list.html">我的订单</a></dd>
+                            <dd><a lay-href="/page/consumerGoodslist.html">我的商品</a></dd>
+                            <dd><a lay-href="/page/consumerOrder-list.html" th:lay-href="@{/merchantOrder-list}">订单列表</a></dd>
                         </dl>
                     </li>
                 </ul>

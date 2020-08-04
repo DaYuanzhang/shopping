@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import uestc.team03.mall.common.domain.Order;
 import uestc.team03.mall.common.domain.User;
 import uestc.team03.mall.common.utils.Result;
+import uestc.team03.mall.service.OrderService;
 import uestc.team03.mall.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,9 @@ import javax.servlet.http.HttpSession;
 public class MerchantController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping("/listMerchant")
     @ResponseBody
@@ -65,6 +70,25 @@ public class MerchantController {
         }
         return Result.success(count,"操作成功",200);
     }
+
+
+    @RequestMapping("/merchantOrder-list")
+    public String OrderListPage(ModelMap modelMap, HttpSession session){
+        User user1= (User)session.getAttribute("user");
+        modelMap.put("user",user1);
+        return "/view/consumerOrder-list";
+    }
+
+    @RequestMapping("/merchantlistOrder")
+    @ResponseBody
+    public Object Orderlist(ModelMap modelMap, HttpSession session, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, String cloginname, String pname){
+        User user1= (User)session.getAttribute("user");
+        System.out.println(user1.getLoginname());
+        modelMap.put("user",user1);
+        PageInfo<Order> pageInfo = orderService.findOrder(pageNo,pageSize,null,cloginname,user1.getLoginname(),pname);
+        return Result.success(pageInfo);
+    }
+
 
 
 
