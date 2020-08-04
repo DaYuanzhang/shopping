@@ -44,7 +44,7 @@ PRIMARY KEY(oid),
 CONSTRAINT ou_fk FOREIGN KEY(user_id) REFERENCES users(id),
 CONSTRAINT op_fk FOREIGN KEY(pro_id) REFERENCES products(pid)
 CONSTRAINT om_fk FOREIGN KEY(mer_id) REFERENCES users(id)
-)
+);
 
 CREATE TABLE request (
   `req_number` int(11) NOT NULL AUTO_INCREMENT,
