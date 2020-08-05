@@ -3,7 +3,6 @@ package uestc.team03.mall.common.domain.extend;
 import uestc.team03.mall.common.domain.Product;
 import uestc.team03.mall.common.domain.User;
 
-import javax.jws.soap.SOAPBinding;
 
 public class OrderExtend {
    private User consumer;
