@@ -18,6 +18,7 @@ import uestc.team03.mall.service.ProductService;
 import uestc.team03.mall.service.UserService;
 import uestc.team03.mall.service.OrderService;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -40,10 +41,25 @@ public class ProductController {
         return Result.success(pageInfo);
     }
 
+    @RequestMapping("/merchantProduct-list")
+    public String MerchantProductListPage(ModelMap modelMap, HttpSession session){
+        User user1= (User)session.getAttribute("user");
+        modelMap.put("user",user1);
+        return "/view/merchantProduct-list";
+    }
+
+    @RequestMapping("/consumerProduct-list")
+    public String ConsumerProductListPage(ModelMap modelMap, HttpSession session){
+        User user1= (User)session.getAttribute("user");
+        modelMap.put("user",user1);
+        return "/view/consumerProduct-list";
+    }
+
     @RequestMapping("/merchantListProduct")
     @ResponseBody
-    public Object merchantListProduct(Product product, String mloginname, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
-        PageInfo<Product> pageInfo = productService.findProduct(pageNo,pageSize,product,mloginname);
+    public Object merchantListProduct(Product product, HttpSession session, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
+        User user1= (User)session.getAttribute("user");
+        PageInfo<Product> pageInfo = productService.findProduct(pageNo,pageSize,product,user1.getLoginname());
         return Result.success(pageInfo);
     }
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="utf-8">
-    <title>订单列表</title>
+    <title>商品列表</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -39,7 +39,7 @@
         </div>
         <div class="layui-card-body">
             <div style="padding-bottom: 10px;">
-                <button class="layui-btn layuiadmin-btn-comm layui-btn-normal" data-type="createConsumer" id="btn_create">新建商品</button>
+                <button class="layui-btn layuiadmin-btn-comm layui-btn-normal" data-type="createConsumer" id="btn_create">上架商品</button>
                 <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="batchdel" id="btn_batchdel">批量删除</button>
             </div>
             <!--  lay-filter 想当于 layui框架自定义 的id 属性-->
@@ -75,12 +75,6 @@
                 {type: 'checkbox', fixed: 'left'}
                 ,{field: 'pid', title: '商品编号'}
                 ,{field: 'pname', title: '商品名'}
-                ,{field: 'sId', title: '商家id'}
-                ,{field: 'merchant', title: '商家用户名'
-                    ,templet:function (d) {
-                        return d.merchant.loginname || '';
-                    }
-                }
                 ,{field: 'price', title: '价格'}
                 ,{field: 'inventory', title: '库存'}
                 ,{fixed: 'right', title: '操作',  align:'center', toolbar: '#toolbar-Mytable',width:180}

@@ -139,10 +139,12 @@
                     });
                 });
             }else if(obj.event === 'edit'){
+                var sId = data.sId;
+                var pid = data.pid;
                 layer.open({
                     title:"购买商品",
                     type: 2,
-                    content: '/showBuyOrder',
+                    content: '/showBuyOrder?sId='+sId+'&pid='+pid,
                     area: ['600px', '400px'],
                     maxmin: true,
                     success: function(layero, index){

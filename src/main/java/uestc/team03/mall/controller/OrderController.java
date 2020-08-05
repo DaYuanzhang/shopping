@@ -17,6 +17,7 @@ import uestc.team03.mall.service.OrderService;
 import uestc.team03.mall.service.ProductService;
 import uestc.team03.mall.service.UserService;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -142,16 +143,36 @@ public class OrderController {
     }
 
     @RequestMapping("/showBuyOrder")
-    public Object showBuyOrder(ModelMap modelMap) {
+    public Object showBuyOrder(ModelMap modelMap, HttpSession session,Integer sId,String pid) {
         //System.out.println(count);
-        List<User> consumerList = userService.consumerList();
-        List<User> merchantList = userService.merchantList();
-        List<Product> productList = productService.productList();
-        modelMap.addAttribute("consumerList", consumerList);
-        modelMap.addAttribute("merchantList", merchantList);
-        modelMap.addAttribute("productList", productList);
-        return "/view/showAddOrder";
+        Product product = productService.findProductById(pid);
+        User user2 = userService.findUserById(sId);
+        User user1= (User)session.getAttribute("user");
+        modelMap.addAttribute("consumer", user1);
+        modelMap.addAttribute("merchant", user2);
+        modelMap.addAttribute("product", product);
+        return "/view/showBuyProduct";
 
+    }
+
+    @RequestMapping("/addProductOrder")
+    @ResponseBody
+    public Object addOrder(String cname,String mname,String pname,String addr){
+        Order order1 = new Order();
+        order1.setDat(new Date());
+        order1.setAddr(addr);
+        order1.setConsumer(userService.findUserByName(cname));
+        order1.setConId(order1.getConsumer().getId());
+        order1.setMerchant(userService.findUserByName(mname));
+        order1.setMerId(order1.getMerchant().getId());
+        order1.setProduct(productService.findProductByName(pname));
+        order1.setProId(order1.getProduct().getPid());
+        int count = orderService.addOrder(order1);
+
+        if(count==0){
+            return Result.fail("操作失败，该用户已存在！",200);
+        }
+        return Result.success(count,"操作成功",200);
     }
 
 }
