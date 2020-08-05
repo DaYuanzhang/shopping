@@ -140,4 +140,18 @@ public class OrderController {
         return "/view/showAddOrder";
 
     }
+
+    @RequestMapping("/showBuyOrder")
+    public Object showBuyOrder(ModelMap modelMap) {
+        //System.out.println(count);
+        List<User> consumerList = userService.consumerList();
+        List<User> merchantList = userService.merchantList();
+        List<Product> productList = productService.productList();
+        modelMap.addAttribute("consumerList", consumerList);
+        modelMap.addAttribute("merchantList", merchantList);
+        modelMap.addAttribute("productList", productList);
+        return "/view/showAddOrder";
+
+    }
+
 }

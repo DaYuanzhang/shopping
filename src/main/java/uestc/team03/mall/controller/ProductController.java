@@ -16,6 +16,7 @@ import uestc.team03.mall.common.utils.Result;
 import uestc.team03.mall.mapper.ProductMapper;
 import uestc.team03.mall.service.ProductService;
 import uestc.team03.mall.service.UserService;
+import uestc.team03.mall.service.OrderService;
 
 import java.util.Date;
 import java.util.List;
@@ -70,6 +71,7 @@ public class ProductController {
         modelMap.addAttribute("merchantList",merchantList);
         return "/view/showProductUpdat.html";
     }
+
 
     @RequestMapping("/submitUpdateProduct")
     @ResponseBody
