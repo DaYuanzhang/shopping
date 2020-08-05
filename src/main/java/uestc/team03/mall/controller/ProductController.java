@@ -40,6 +40,13 @@ public class ProductController {
         return Result.success(pageInfo);
     }
 
+    @RequestMapping("/merchantListProduct")
+    @ResponseBody
+    public Object merchantListProduct(Product product, String mloginname, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
+        PageInfo<Product> pageInfo = productService.findProduct(pageNo,pageSize,product,mloginname);
+        return Result.success(pageInfo);
+    }
+
     @RequestMapping("/showProduct")
     public String showOrder(ModelMap modelMap, String  id){
         Product product = productService.findProductById(id);
