@@ -35,13 +35,13 @@ CONSTRAINT ps_fk FOREIGN KEY (s_id) REFERENCES users(id)
 #订单表
 CREATE TABLE orders(
 oid	INT(11)	AUTO_INCREMENT,
-user_id	INT(11) ,
+con_id	INT(11) ,
 pro_id	VARCHAR(32),
 dat 	DATE ,
 mer_id INT(11),
 addr  VARCHAR(50),
 PRIMARY KEY(oid),
-CONSTRAINT ou_fk FOREIGN KEY(user_id) REFERENCES users(id),
+CONSTRAINT oc_fk FOREIGN KEY(con_id) REFERENCES users(id),
 CONSTRAINT op_fk FOREIGN KEY(pro_id) REFERENCES products(pid)
 CONSTRAINT om_fk FOREIGN KEY(mer_id) REFERENCES users(id)
 );

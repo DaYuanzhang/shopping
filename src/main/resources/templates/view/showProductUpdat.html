@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <title>更改商品信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all" th:href="@{/layuiadmin/layui/css/layui.css}" >
+    <link rel="stylesheet"  href="../../layuiadmin/style/admin.css" media="all" th:href="@{/layuiadmin/style/admin.css}" >
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body" style="padding: 15px;">
+            <form class="layui-form" action="" lay-filter="form1">
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商家用户名</label>
+                    <div class="layui-input-block">
+                        <input type="hidden" name="pid" th:value="${product.pid}">
+                        <input type="hidden" name="sId" th:value="${product.sId}">
+                        <select data-placeholder="请选择商家用户名"  id="merchantId" name="mname"  class="form-control chosen-select"  required >
+                            <option   th:value="${product.merchant.loginname}" th:text="${product.merchant.loginname}" selected></option>
+                            <option   th:each="merchant:${merchantList}" th:value="${merchant.loginname}"  th:text="${merchant.loginname}" ></option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="pname" lay-verify="pname" autocomplete="off" placeholder="空" class="layui-input" th:value="${product.pname}" >
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">价格</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="price" lay-verify="price" autocomplete="off" placeholder="空" class="layui-input" th:value="${product.price}" disabled>
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">库存</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="inventory" lay-verify="inventory" autocomplete="off" placeholder="空" class="layui-input" th:value="${product.inventory}" >
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item layui-layout-admin">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left: 0;">
+                            <button class="layui-btn" lay-submit="" lay-filter="layer_btn_submit">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="../../../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script>
+
+
+    layui.config({
+        base: [('"'+@{/layuiadmin/}+'"')]
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+
+        form.render(null, 'form1');
+
+
+
+        /* 自定义验证规则 */
+        form.verify({
+            mname: function(value){
+                if(value.length < 5){
+                    return '用户名至少得5个字符啊';
+                }
+            },
+            price: function(value){
+                if(value.length <=0){
+                    return '价格不能空';
+                }
+            },
+            inventory: function(value){
+                if(value.length <=0){
+                    return '库存不能空';
+                }
+            },
+            tel: function(value){
+                if(value.length <=0){
+                    return '手机号不能空';
+                }
+            },
+        });
+
+        /* 监听提交 */
+        form.on('submit(layer_btn_submit)', function(data){
+            var mname = data.field.mname;
+            $.ajax({
+                type: "POST",
+                contentType:"application/json",
+                url: "/submitUpdateProduct?mname="+mname,
+                data: JSON.stringify(data.field),
+                success: function(msg){
+                    if(msg["success"]){
+                        var layer = parent.layer;
+                        layer.msg("操作成功 ",{time:700},function () {
+                            layer.closeAll();
+                            // 重新加载上级页面的路径，相当于刷新
+                            parent.location.reload();
+                        });
+                    }
+                },
+                dataType:"json"
+            });
+            return false;
+        });
+    });
+</script>
+<script type="text/javascript" th:inline="javascript">
+    $().ready(function() {
+        var single = [[${consumerId}]];
+        $("#consumerId option[value= " + single + "]").prop("selected", true);
+    });
+</script>
+
+</body>
+</html>
