@@ -32,107 +32,35 @@ public class OrderServiceImpl implements OrderService{
 
         PageHelper.startPage(pageNo,pageSize);
         List<Order> orderList = orderMapper.orderList();
-        int count = -1;
-        if(cloginname == null && mloginname == null && pname == null) count = 0;
-        else if(cloginname != null && mloginname == null && pname == null) count = 1;
-        else if (cloginname == null && mloginname != null && pname == null) count = 2;
-        else if (cloginname == null && mloginname == null && pname != null) count = 3;
-        else if(cloginname != null && mloginname != null && pname == null) count = 4;
-        else if(cloginname != null && mloginname == null && pname != null) count = 5;
-        else if(cloginname == null && mloginname != null && pname != null) count = 6;
-        else count = 7;
 
-        switch (count){
-            case 0: break;
-            case 1: orderList = this.findOrder(cloginname,orderList);
-                    break;
-            case 2: orderList = this.findOrder2(mloginname,orderList);
-                    break;
-            case 3: orderList = this.findOrder3(pname,orderList);
-                    break;
-            case 4: orderList = this.findOrder(cloginname,mloginname,orderList);
-                    break;
-            case 5: orderList = this.findOrder2(cloginname,pname,orderList);
-                    break;
-            case 6: orderList = this.findOrder3(mloginname,pname,orderList);
-                    break;
-            default: orderList = this.findOrder(cloginname,mloginname,pname,orderList);
-                    break;
+        if(mloginname != null ){
+            for(int i=0;i<orderList.size();i++){
+                if (orderList.get(i).getMerchant().getLoginname().contains(mloginname)==false){
+                    orderList.remove(i);
+                    i--;
+                }
+            }
+        }
+        if(cloginname != null ){
+            for(int i=0;i<orderList.size();i++){
+                if (orderList.get(i).getConsumer().getLoginname().contains(cloginname)==false){
+                    orderList.remove(i);
+                    i--;
+                }
+            }
+        }
+        if(pname != null ){
+            for(int i=0;i<orderList.size();i++){
+                if (orderList.get(i).getProduct().getPname().contains(pname)==false){
+                    orderList.remove(i);
+                    i--;
+                }
+            }
         }
                 PageInfo<Order> pageInfo = new PageInfo<>(orderList);
                 return pageInfo;
     }
 
-    private List<Order> findOrder(String cloginname, String mloginname, String pname, List<Order> orders) {
-        for(int i=0;i<orders.size();i++){
-            if(orders.get(i).getConsumer().getLoginname().contains(cloginname)==false || orders.get(i).getMerchant().getLoginname().contains(mloginname)==false || orders.get(i).getProduct().getPname().contains(pname)==false){
-                orders.remove(i);
-                i--;
-            }
-        }
-        return orders;
-    }
-
-    private List<Order> findOrder3(String mloginname, String pname, List<Order> orders) {
-        for(int i=0;i<orders.size();i++){
-            if(orders.get(i).getMerchant().getLoginname().contains(mloginname)==false || orders.get(i).getProduct().getPname().contains(pname)==false){
-                orders.remove(i);
-                i--;
-            }
-        }
-        return orders;
-    }
-
-    private List<Order> findOrder2(String cloginname, String pname, List<Order> orders) {
-        for(int i=0;i<orders.size();i++){
-            if(orders.get(i).getConsumer().getLoginname().contains(cloginname)==false || orders.get(i).getProduct().getPname().contains(pname)==false){
-                orders.remove(i);
-                i--;
-            }
-        }
-        return orders;
-    }
-
-    private List<Order> findOrder(String cloginname, String mloginname, List<Order> orders) {
-        for(int i=0;i<orders.size();i++){
-            if(orders.get(i).getConsumer().getLoginname().contains(cloginname)==false || orders.get(i).getMerchant().getLoginname().contains(mloginname)==false){
-                orders.remove(i);
-                i--;
-            }
-        }
-        return orders;
-
-    }
-
-    private List<Order> findOrder3(String pname, List<Order> orders) {
-        for(int i=0;i<orders.size();i++){
-            if(orders.get(i).getProduct().getPname().contains(pname)==false){
-                orders.remove(i);
-                i--;
-            }
-        }
-        return orders;
-    }
-
-    private List<Order> findOrder(String cloginname,List<Order> orders) {
-        for(int i=0;i<orders.size();i++){
-            if(orders.get(i).getConsumer().getLoginname().contains(cloginname)==false){
-                orders.remove(i);
-                i--;
-            }
-        }
-        return orders;
-    }
-
-    private List<Order> findOrder2(String mloginname,List<Order> orders) {
-        for(int i=0;i<orders.size();i++){
-            if(orders.get(i).getMerchant().getLoginname().contains(mloginname)==false){
-                orders.remove(i);
-                i--;
-            }
-        }
-        return orders;
-    }
 
 
 
