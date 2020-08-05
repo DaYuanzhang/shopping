@@ -8,5 +8,5 @@ import uestc.team03.mall.mapper.UserMapper;
 
 //@SpringBootTest
 class MallApplicationTests {
-    
+
 }
