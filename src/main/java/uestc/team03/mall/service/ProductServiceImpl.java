@@ -48,7 +48,6 @@ public class ProductServiceImpl implements ProductService{
         if(product.getPname()!=null && product.getPname().trim().length()==0) pname=null;
         PageHelper.startPage(pageNo,pageSize);
         List<Product> productList = productMapper.productList();
-        System.out.println(productList);
         if(mloginname != null ){
             for(int i=0;i<productList.size();i++){
                 if (productList.get(i).getMerchant().getLoginname().contains(mloginname)==false){

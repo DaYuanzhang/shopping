@@ -88,6 +88,10 @@ public class ProductController {
         if(mname.equals("null")){
             return Result.fail("失败",200);
         }
+        List<Product> products = productMapper.productList();
+        if(product.getPid()==null){
+            product.setPid("p"+products.size());
+        }
         product.setMerchant(userService.findUserByName(mname));
         product.setsId(product.getMerchant().getId());
         int count = productService.addProduct(product);
