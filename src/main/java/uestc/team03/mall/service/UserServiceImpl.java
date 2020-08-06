@@ -4,14 +4,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uestc.team03.mall.common.domain.Product;
-import uestc.team03.mall.common.domain.ProductExample;
-import uestc.team03.mall.common.domain.User;
-import uestc.team03.mall.common.domain.UserExample;
+import uestc.team03.mall.common.domain.*;
 import uestc.team03.mall.mapper.ProductMapper;
 import uestc.team03.mall.mapper.UserMapper;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -39,6 +38,15 @@ public class UserServiceImpl implements UserService {
         }
         criteria.andRoleEqualTo("客户");
         List<User> useList = userMapper.selectByExample(userExample);
+
+        Collections.sort(useList, new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                //升序
+                return o1.getId().compareTo(o2.getId());
+            }
+        });
+
         PageInfo<User> pageInfo = new PageInfo<>(useList);
         return pageInfo;
     }
@@ -94,6 +102,15 @@ public class UserServiceImpl implements UserService {
         }
         criteria.andRoleEqualTo("商家");
         List<User> useList = userMapper.selectByExample(userExample);
+
+        Collections.sort(useList, new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                //升序
+                return o1.getId().compareTo(o2.getId());
+            }
+        });
+
         PageInfo<User> pageInfo = new PageInfo<>(useList);
         return pageInfo;
     }

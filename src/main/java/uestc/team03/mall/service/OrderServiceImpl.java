@@ -3,6 +3,7 @@ package uestc.team03.mall.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uestc.team03.mall.common.domain.*;
@@ -10,7 +11,10 @@ import uestc.team03.mall.mapper.OrderMapper;
 import uestc.team03.mall.mapper.ProductMapper;
 import uestc.team03.mall.mapper.UserMapper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -57,6 +61,19 @@ public class OrderServiceImpl implements OrderService{
                 }
             }
         }
+        for (Order order1:orderList){
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+            order1.setDate(sdf.format(order1.getDat()));
+        }
+
+        Collections.sort(orderList, new Comparator<Order>() {
+            @Override
+            public int compare(Order o1, Order o2) {
+                //升序
+                return o1.getOid().compareTo(o2.getOid());
+            }
+        });
+
                 PageInfo<Order> pageInfo = new PageInfo<>(orderList);
                 return pageInfo;
     }
@@ -124,6 +141,18 @@ public class OrderServiceImpl implements OrderService{
                 }
             }
         }
+        for (Order order1:orderList){
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+            order1.setDate(sdf.format(order1.getDat()));
+        }
+        Collections.sort(orderList, new Comparator<Order>() {
+            @Override
+            public int compare(Order o1, Order o2) {
+                //升序
+                return o1.getOid().compareTo(o2.getOid());
+            }
+        });
+
         PageInfo<Order> pageInfo = new PageInfo<>(orderList);
         return pageInfo;
     }
@@ -161,6 +190,20 @@ public class OrderServiceImpl implements OrderService{
                 }
             }
         }
+
+        for (Order order1:orderList){
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+            order1.setDate(sdf.format(order1.getDat()));
+        }
+
+        Collections.sort(orderList, new Comparator<Order>() {
+            @Override
+            public int compare(Order o1, Order o2) {
+                //升序
+                return o1.getOid().compareTo(o2.getOid());
+            }
+        });
+
         PageInfo<Order> pageInfo = new PageInfo<>(orderList);
         return pageInfo;
     }

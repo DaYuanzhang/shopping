@@ -18,6 +18,7 @@ import uestc.team03.mall.service.ProductService;
 import uestc.team03.mall.service.UserService;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -111,16 +112,26 @@ public class OrderController {
         if(cname.equals("null") || mname.equals("null") || pname.equals("null")){
             return Result.fail("失败",200);
         }
+        if(productService.findProductByName(pname).getInventory()==0){
+            return Result.fail("失败",200);
+        }
 
         Order order1 = new Order();
-        order1.setDat(new Date());
+        Date dat = new Date();
+        order1.setDat(dat);
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        //格式化为日期/时间字符串
+        order1.setDate(sdf.format(dat));
+        Product product = productService.findProductByName(pname);
+        product.setInventory(product.getInventory()-1);
+        productService.updateProduct(product);
         order1.setAddr(order.getAddr());
         order1.setConsumer(userService.findUserByName(cname));
         order1.setConId(order1.getConsumer().getId());
         order1.setMerchant(userService.findUserByName(mname));
         order1.setMerId(order1.getMerchant().getId());
-        order1.setProduct(productService.findProductByName(pname));
-        order1.setProId(order1.getProduct().getPid());
+        order1.setProduct(product);
+        order1.setProId(product.getPid());
         int count = orderService.addOrder(order1);
 
         if(count==0){

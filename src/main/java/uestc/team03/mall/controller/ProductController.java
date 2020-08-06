@@ -59,7 +59,7 @@ public class ProductController {
     @ResponseBody
     public Object merchantListProduct(Product product, HttpSession session, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
         User user1= (User)session.getAttribute("user");
-        PageInfo<Product> pageInfo = productService.findProduct(pageNo,pageSize,product,user1.getLoginname());
+        PageInfo<Product> pageInfo = productService.merchantfindProduct(pageNo,pageSize,product,user1.getLoginname());
         return Result.success(pageInfo);
     }
 

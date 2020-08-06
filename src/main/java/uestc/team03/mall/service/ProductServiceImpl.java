@@ -10,6 +10,8 @@ import uestc.team03.mall.common.domain.Product;
 import uestc.team03.mall.common.domain.ProductExample;
 import uestc.team03.mall.mapper.ProductMapper;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -64,9 +66,55 @@ public class ProductServiceImpl implements ProductService{
                 }
             }
         }
+
+        Collections.sort(productList, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                //升序
+                return o1.getPid().compareTo(o2.getPid());
+            }
+        });
+
         PageInfo<Product> pageInfo = new PageInfo<>(productList);
         return pageInfo;
     }
+    @Override
+    public PageInfo<Product> merchantfindProduct(int pageNo, int pageSize, Product product, String mloginname) {
+        String pname = product.getPname();
+        if(product.getPname()!=null && product.getPname().trim().length()==0) pname=null;
+        PageHelper.startPage(pageNo,pageSize);
+        List<Product> productList = productMapper.productList();
+        if(mloginname != null ){
+            for(int i=0;i<productList.size();i++){
+                if (productList.get(i).getMerchant().getLoginname().equals(mloginname)==false){
+                    productList.remove(i);
+                    i--;
+                }
+            }
+        }
+        if(pname != null){
+            for (int i=0;i<productList.size();i++){
+                if (productList.get(i).getPname().contains(pname) == false){
+                    productList.remove(i);
+                    i--;
+                }
+            }
+        }
+
+        Collections.sort(productList, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                //升序
+                return o1.getPid().compareTo(o2.getPid());
+            }
+        });
+
+        PageInfo<Product> pageInfo = new PageInfo<>(productList);
+        return pageInfo;
+    }
+
+
+
 
     @Override
     public int removeProduct(String... ids) {

@@ -15,6 +15,8 @@ public interface ProductService {
 
     PageInfo<Product> findProduct(int pageNo, int pageSize, Product product, String mloginname);
 
+    PageInfo<Product> merchantfindProduct(int pageNo, int pageSize, Product product, String mloginname);
+
     int removeProduct(String... ids);
 
     int updateProduct(Product product);
