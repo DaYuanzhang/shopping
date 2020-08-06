@@ -85,7 +85,9 @@ INSERT INTO products (pid, pname,price,flag,category_id,s_id,inventory) VALUES('
 
 #订单
 INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(2,'p1','2020-12-13',3,'ddasdasdas');
-INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(2,'p2','2020-09-01',9,'fgvkjhbk.noih');
-INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(2,'p3','2020-10-04',10,'asfasgassdasda');
-INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(5,'p6','2019-12-05',10,'45345655465466fsa');
-INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(5,'p9','2019-11-02',3,'345dsfas');
+INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(2,'p2','2020-09-01',3,'fgvkjhbk.noih');
+INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(2,'p3','2020-10-04',3,'asfasgassdasda');
+INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(5,'p6','2019-12-05',9,'45345655465466fsa');
+INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(5,'p9','2019-11-02',10,'345dsfas');
+INSERT INTO orders(con_id,pro_id,dat,mer_id,addr) VALUES(6,'p4','2019-07-05',9,'湖南省');
+
