@@ -4,7 +4,7 @@ import uestc.team03.mall.common.domain.extend.UserExtend;
 
 import java.io.Serializable;
 
-public class User extends UserExtend implements Serializable {
+public class User extends UserExtend{
     private Integer id;
 
     private String loginname;
