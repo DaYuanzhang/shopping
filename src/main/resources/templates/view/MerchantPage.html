@@ -98,7 +98,7 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="console">
-                                <a lay-href="home/homepage1.html">个人信息</a>
+                                <a lay-href="home/homepage1.html" th:lay-href="@{/Minfo}">个人信息</a>
                             </dd>
                         </dl>
                     </li>
@@ -108,7 +108,7 @@
                             <cite>管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a lay-href="/page/consumerGoodslist.html">我的商品</a></dd>
+                            <dd><a lay-href="/page/merchantProduct-list.html" th:lay-href="@{/merchantProduct-list}">我的商品</a></dd>
                             <dd><a lay-href="/page/consumerOrder-list.html" th:lay-href="@{/merchantOrder-list}">订单列表</a></dd>
                         </dl>
                     </li>

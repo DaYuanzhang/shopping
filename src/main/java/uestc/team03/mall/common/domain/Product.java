@@ -1,6 +1,8 @@
 package uestc.team03.mall.common.domain;
 
-public class Product {
+import uestc.team03.mall.common.domain.extend.ProductExtend;
+
+public class Product extends ProductExtend {
     private String pid;
 
     private String pname;

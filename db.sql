@@ -35,13 +35,13 @@ CONSTRAINT ps_fk FOREIGN KEY (s_id) REFERENCES users(id)
 #订单表
 CREATE TABLE orders(
 oid	INT(11)	AUTO_INCREMENT,
-user_id	INT(11) ,
+con_id	INT(11) ,
 pro_id	VARCHAR(32),
 dat 	DATE ,
 mer_id INT(11),
 addr  VARCHAR(50),
 PRIMARY KEY(oid),
-CONSTRAINT ou_fk FOREIGN KEY(user_id) REFERENCES users(id),
+CONSTRAINT oc_fk FOREIGN KEY(con_id) REFERENCES users(id),
 CONSTRAINT op_fk FOREIGN KEY(pro_id) REFERENCES products(pid)
 CONSTRAINT om_fk FOREIGN KEY(mer_id) REFERENCES users(id)
 );
@@ -59,12 +59,12 @@ INSERT INTO category(cid,cname) VALUES('c001','家电');
 INSERT INTO category(cid,cname) VALUES('c002','服饰');
 INSERT INTO category(cid,cname) VALUES('c003','化妆品');
 #商品
-INSERT INTO products(pid, pname,price,flag,category_id) VALUES('p001','联想',5000,'1','c001');
-INSERT INTO products(pid, pname,price,flag,category_id) VALUES('p002','海尔',3000,'1','c001');
-INSERT INTO products(pid, pname,price,flag,category_id) VALUES('p003','雷神',5000,'1','c001');
-INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p004','JACKJONES',800,'1','c002');
-INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p005','真维斯',200,'1','c002');
-INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p006','花花公子',440,'1','c002');
-INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p007','劲霸',2000,'1','c002');
-INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p008','香奈儿',800,'1','c003');
-INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p009','相宜本草',200,'1','c003');
+INSERT INTO products(pid, pname,price,flag,category_id) VALUES('p1','联想',5000,'1','c001');
+INSERT INTO products(pid, pname,price,flag,category_id) VALUES('p2','海尔',3000,'1','c001');
+INSERT INTO products(pid, pname,price,flag,category_id) VALUES('p3','雷神',5000,'1','c001');
+INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p4','JACKJONES',800,'1','c002');
+INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p5','真维斯',200,'1','c002');
+INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p6','花花公子',440,'1','c002');
+INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p7','劲霸',2000,'1','c002');
+INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p8','香奈儿',800,'1','c003');
+INSERT INTO products (pid, pname,price,flag,category_id) VALUES('p9','相宜本草',200,'1','c003');

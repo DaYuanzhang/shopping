@@ -76,14 +76,13 @@ public class MerchantController {
     public String OrderListPage(ModelMap modelMap, HttpSession session){
         User user1= (User)session.getAttribute("user");
         modelMap.put("user",user1);
-        return "/view/consumerOrder-list";
+        return "/view/merchantOrder-list";
     }
 
     @RequestMapping("/merchantlistOrder")
     @ResponseBody
     public Object Orderlist(ModelMap modelMap, HttpSession session, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, String cloginname, String pname){
         User user1= (User)session.getAttribute("user");
-        System.out.println(user1.getLoginname());
         modelMap.put("user",user1);
         PageInfo<Order> pageInfo = orderService.findOrder(pageNo,pageSize,null,cloginname,user1.getLoginname(),pname);
         return Result.success(pageInfo);
