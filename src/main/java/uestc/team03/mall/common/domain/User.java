@@ -2,7 +2,9 @@ package uestc.team03.mall.common.domain;
 
 import uestc.team03.mall.common.domain.extend.UserExtend;
 
-public class User extends UserExtend {
+import java.io.Serializable;
+
+public class User extends UserExtend implements Serializable {
     private Integer id;
 
     private String loginname;
