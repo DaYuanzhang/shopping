@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import uestc.team03.mall.common.domain.User;
 import uestc.team03.mall.common.utils.Result;
 import uestc.team03.mall.service.UserService;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -40,14 +38,22 @@ public class LoginController {
     }
     @RequestMapping("/regrequest")
     @ResponseBody
-    public Object reg( User user){
+    public Object reg(User user){
         user.setRole("客户");
         int count = userService.addConsumer(user);
-        //System.out.println(count);
         if(count==0){
             return Result.fail("注册失败，该用户已存在！",0);
         }
         return Result.success(count,"注册成功",0);
     }
+    @RequestMapping("/logout")
+    @ResponseBody
+    public Object logout(HttpSession session){
+        System.out.println(1);
+        User user =new User();
+        session.setAttribute("user",user);
+        return Result.success("注销成功",0);
+    }
+
 
 }

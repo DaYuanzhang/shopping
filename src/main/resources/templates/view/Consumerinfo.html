@@ -43,6 +43,7 @@
                 <div class="layui-input-block">
                   <button class="layui-btn" lay-href="" th:lay-href="@{/infochange}">修改个人信息</button>
                   <button class="layui-btn" lay-href="" th:lay-href="@{/pwdchange}">修改密码</button>
+                  <button class="layui-btn" lay-submit lay-filter="LAY-user-logout-submit">退出登录</button>
                   <button class="layui-btn" lay-submit lay-filter="LAY-user-Roleup-submit">申请成为商家</button>
                 </div>
               </div>
@@ -91,6 +92,27 @@
               layer.closeAll();
                 // 重新加载上级页面的路径，相当于刷新
               parent.location.reload();
+            });
+          }
+        },
+        dataType:"json"
+      });
+      return false;
+    });
+    form.on('submit(LAY-user-logout-submit)', function(obj){
+
+      admin.req({
+        url: '/logout'
+        ,data: obj.field
+        ,done: function(res){
+
+          if(res.message === '注销成功'){
+            layer.msg(res.message, {
+              offset: '15px'
+              ,icon: 1
+              ,time: 300
+            }, function(){
+              parent.location.href = '/';
             });
           }
         },
