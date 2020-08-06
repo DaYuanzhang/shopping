@@ -90,4 +90,80 @@ public class OrderServiceImpl implements OrderService{
     public int addOrder(Order order) {
         return orderMapper.insert(order);
     }
+
+    @Override
+    public PageInfo<Order> consumerfindOrder(int pageNo, int pageSize, String cloginname, String mloginname, String pname) {
+        if(mloginname!=null && mloginname.trim().length()==0) mloginname=null;
+        if(pname!=null && pname.trim().length()==0) pname=null;
+
+
+        PageHelper.startPage(pageNo,pageSize);
+        List<Order> orderList = orderMapper.orderList();
+
+        if(mloginname != null ){
+            for(int i=0;i<orderList.size();i++){
+                if (orderList.get(i).getMerchant().getLoginname().contains(mloginname)==false){
+                    orderList.remove(i);
+                    i--;
+                }
+            }
+        }
+        if(cloginname != null ){
+            for(int i=0;i<orderList.size();i++){
+                if (orderList.get(i).getConsumer().getLoginname().equals(cloginname)==false){
+                    orderList.remove(i);
+                    i--;
+                }
+            }
+        }
+        if(pname != null ){
+            for(int i=0;i<orderList.size();i++){
+                if (orderList.get(i).getProduct().getPname().contains(pname)==false){
+                    orderList.remove(i);
+                    i--;
+                }
+            }
+        }
+        PageInfo<Order> pageInfo = new PageInfo<>(orderList);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<Order> merchantfindOrder(int pageNo, int pageSize, String cloginname, String mloginname, String pname) {
+        if(cloginname!=null && cloginname.trim().length()==0) cloginname=null;
+        if(pname!=null && pname.trim().length()==0) pname=null;
+
+
+        PageHelper.startPage(pageNo,pageSize);
+        List<Order> orderList = orderMapper.orderList();
+
+        if(mloginname != null ){
+            for(int i=0;i<orderList.size();i++){
+                if (orderList.get(i).getMerchant().getLoginname().equals(mloginname)==false){
+                    orderList.remove(i);
+                    i--;
+                }
+            }
+        }
+        if(cloginname != null ){
+            for(int i=0;i<orderList.size();i++){
+                if (orderList.get(i).getConsumer().getLoginname().contains(cloginname)==false){
+                    orderList.remove(i);
+                    i--;
+                }
+            }
+        }
+        if(pname != null ){
+            for(int i=0;i<orderList.size();i++){
+                if (orderList.get(i).getProduct().getPname().contains(pname)==false){
+                    orderList.remove(i);
+                    i--;
+                }
+            }
+        }
+        PageInfo<Order> pageInfo = new PageInfo<>(orderList);
+        return pageInfo;
+    }
+
+
 }

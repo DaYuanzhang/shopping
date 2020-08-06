@@ -16,4 +16,8 @@ public interface OrderService {
     int updateOrder(Order order);
 
     int addOrder(Order order);
+
+    PageInfo<Order> consumerfindOrder(int pageNo, int pageSize, String cloginname, String mloginname, String pname);
+
+    PageInfo<Order> merchantfindOrder(int pageNo, int pageSize, String cloginname, String mloginname, String pname);
 }

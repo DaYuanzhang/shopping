@@ -80,7 +80,7 @@ public class ConsumerController {
     public Object Orderlist(ModelMap modelMap, HttpSession session,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize,String mloginname,String pname){
         User user1= (User)session.getAttribute("user");
         modelMap.put("user",user1);
-        PageInfo<Order> pageInfo = orderService.findOrder(pageNo,pageSize,null,user1.getLoginname(),mloginname,pname);
+        PageInfo<Order> pageInfo = orderService.consumerfindOrder(pageNo,pageSize,user1.getLoginname(),mloginname,pname);
         return Result.success(pageInfo);
     }
 
