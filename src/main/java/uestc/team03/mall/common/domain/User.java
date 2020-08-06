@@ -2,24 +2,22 @@ package uestc.team03.mall.common.domain;
 
 import uestc.team03.mall.common.domain.extend.UserExtend;
 
-import java.io.Serializable;
-
-public class User extends UserExtend{
+public class User extends UserExtend {
     private Integer id;
 
     private String loginname;
 
     private String password;
 
+    private String tel;
+
+    private String email;
+
     private String remark;
 
     private Integer isDeleted;
 
     private String role;
-
-    private String email;
-
-    private String tel;
 
     public Integer getId() {
         return id;
@@ -45,6 +43,22 @@ public class User extends UserExtend{
         this.password = password == null ? null : password.trim();
     }
 
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -67,21 +81,5 @@ public class User extends UserExtend{
 
     public void setRole(String role) {
         this.role = role == null ? null : role.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel == null ? null : tel.trim();
     }
 }

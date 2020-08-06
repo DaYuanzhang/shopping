@@ -1,8 +1,6 @@
 package uestc.team03.mall.common.domain.extend;
 
-import java.io.Serializable;
-
-public class UserExtend implements Serializable {
+public class UserExtend {
     private String newpassword;
 
     public String getNewpassword() {
