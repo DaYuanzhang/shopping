@@ -161,12 +161,15 @@ public class OrderController {
         Order order1 = new Order();
         order1.setDat(new Date());
         order1.setAddr(addr);
+        Product product = productService.findProductByName(pname);
+        product.setInventory(product.getInventory()-1);
+        productService.updateProduct(product);
         order1.setConsumer(userService.findUserByName(cname));
         order1.setConId(order1.getConsumer().getId());
         order1.setMerchant(userService.findUserByName(mname));
         order1.setMerId(order1.getMerchant().getId());
-        order1.setProduct(productService.findProductByName(pname));
-        order1.setProId(order1.getProduct().getPid());
+        order1.setProduct(product);
+        order1.setProId(product.getPid());
         int count = orderService.addOrder(order1);
 
         if(count==0){

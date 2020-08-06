@@ -105,16 +105,17 @@
             var data = obj.data;
             if(obj.event === 'detail'){
                 var id = data.pid;
-                layer.open({
-                    title:"商品详细信息",
-                    type: 2,
-                    content: '/showProduct?id='+id,
-                    area: ['600px', '400px'],
-                    maxmin: true,
-                    success: function(layero, index){
-                        //layer.full(index);
-                    }
-                });
+
+                    layer.open({
+                        title:"商品详细信息",
+                        type: 2,
+                        content: '/showProduct?id='+id,
+                        area: ['600px', '400px'],
+                        maxmin: true,
+                        success: function(layero, index){
+                            //layer.full(index);
+                        }
+                    });
 
             } else if(obj.event === 'del'){
                 layer.confirm('真的删除商品[  '+data.pid+' ] ?? ', function(index){
@@ -141,17 +142,25 @@
             }else if(obj.event === 'edit'){
                 var sId = data.sId;
                 var pid = data.pid;
-                layer.open({
-                    title:"购买商品",
-                    type: 2,
-                    content: '/showBuyOrder?sId='+sId+'&pid='+pid,
-                    area: ['600px', '400px'],
-                    maxmin: true,
-                    success: function(layero, index){
-                        //layer.full(index);
-                    }
-                });
-
+                var inv = data.inventory;
+                if(inv ==0) {
+                    layer.msg("库存不足啦！", {
+                        icon: 1
+                        ,time: 1000
+                    }, function () {
+                    });
+                }else {
+                    layer.open({
+                        title: "购买商品",
+                        type: 2,
+                        content: '/showBuyOrder?sId=' + sId + '&pid=' + pid,
+                        area: ['600px', '400px'],
+                        maxmin: true,
+                        success: function (layero, index) {
+                            //layer.full(index);
+                        }
+                    });
+                }
             }
         });
 
