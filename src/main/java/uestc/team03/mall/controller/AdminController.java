@@ -35,12 +35,15 @@ public class AdminController {
     public Object agreeRequest(@RequestBody Integer[] ids){
         int i = 0;
         for(; i < ids.length; i++){
-            User user = new User();
-            user.setId(ids[i]);
-            user.setRole("商家");
+            if(i%2 == 0){
+                User user = new User();
+                user.setId(ids[i]);
+                user.setRole("商家");
 
-            userMapper.updateByPrimaryKeySelective(user);
-            requestService.deleteRequest(ids[i]);
+                userMapper.updateByPrimaryKeySelective(user);
+            }
+            else
+                requestService.deleteRequest(ids[i]);
         }
 
         return Result.success(i/2,"操作成功",200);
