@@ -49,7 +49,7 @@ public class InfoController {
     public String InfoChange(ModelMap modelMap, HttpSession session){
         User user5= (User)session.getAttribute("user");
         modelMap.put("user",user5);
-        return "/view/showConsumerUpdate";
+        return "/view/Infochange";
     }
     @RequestMapping("/submitUpdateConsumer")
     @ResponseBody
