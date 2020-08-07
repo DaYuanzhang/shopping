@@ -39,8 +39,8 @@ flag VARCHAR(2),
 category_id VARCHAR(32),
 s_id  int(11),
 inventory int DEFAULT '0',
-CONSTRAINT products_fk FOREIGN KEY (category_id) REFERENCES category (cid),
-CONSTRAINT ps_fk FOREIGN KEY (s_id) REFERENCES users(id)
+CONSTRAINT products_fk FOREIGN KEY (category_id) REFERENCES category (cid) ON DELETE CASCADE,
+CONSTRAINT ps_fk FOREIGN KEY (s_id) REFERENCES users(id) ON DELETE CASCADE
 );
 #订单表
 CREATE TABLE orders(
@@ -51,9 +51,9 @@ dat 	DATE ,
 mer_id INT(11),
 addr  VARCHAR(50),
 PRIMARY KEY(oid),
-CONSTRAINT oc_fk FOREIGN KEY(con_id) REFERENCES users(id),
-CONSTRAINT op_fk FOREIGN KEY(pro_id) REFERENCES products(pid),
-CONSTRAINT om_fk FOREIGN KEY(mer_id) REFERENCES users(id)
+CONSTRAINT oc_fk FOREIGN KEY(con_id) REFERENCES users(id) ON DELETE CASCADE,
+CONSTRAINT op_fk FOREIGN KEY(pro_id) REFERENCES products(pid) ON DELETE CASCADE,
+CONSTRAINT om_fk FOREIGN KEY(mer_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE request (
