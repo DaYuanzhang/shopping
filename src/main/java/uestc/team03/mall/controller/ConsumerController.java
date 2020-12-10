@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import uestc.team03.mall.common.domain.Order;
 import uestc.team03.mall.common.domain.User;
 import uestc.team03.mall.common.utils.Result;
+import uestc.team03.mall.controller.extend.HelloWorldExample;
 import uestc.team03.mall.service.OrderService;
 import uestc.team03.mall.service.UserService;
 
@@ -31,6 +32,12 @@ public class ConsumerController {
     @ResponseBody
     public Object listConsumer(User user, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10")int pageSize){
         PageInfo<User> pageInfo = userService.findConsumer(pageNo, pageSize,user);
+        try ( HelloWorldExample greeter = new HelloWorldExample( "bolt://localhost:7687", "neo4j", "778645" ) )//由带资源的try语句管理的资源必须是实现了AutoCloseable接口的类的对象
+        {
+            greeter.printGreeting( "hello, world" );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return Result.success(pageInfo);
     }
 
